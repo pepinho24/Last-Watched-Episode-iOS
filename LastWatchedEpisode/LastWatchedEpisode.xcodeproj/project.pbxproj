@@ -14,6 +14,7 @@
 		A6511E721C5F91BB0011BD40 /* LastWatchedEpisode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6511E701C5F91BB0011BD40 /* LastWatchedEpisode.xcdatamodeld */; };
 		A6511E741C5F91BB0011BD40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6511E731C5F91BB0011BD40 /* Assets.xcassets */; };
 		A6511E771C5F91BB0011BD40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6511E751C5F91BB0011BD40 /* LaunchScreen.storyboard */; };
+		A6511E8B1C5F99A50011BD40 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = A6511E7F1C5F99A50011BD40 /* Contents.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		A6511E731C5F91BB0011BD40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6511E761C5F91BB0011BD40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6511E781C5F91BB0011BD40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6511E7F1C5F99A50011BD40 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				A6511E6B1C5F91BB0011BD40 /* ViewController.m */,
 				A6511E6D1C5F91BB0011BD40 /* Main.storyboard */,
 				A6511E731C5F91BB0011BD40 /* Assets.xcassets */,
+				A6511E7E1C5F99A50011BD40 /* AppIcon.appiconset */,
 				A6511E751C5F91BB0011BD40 /* LaunchScreen.storyboard */,
 				A6511E781C5F91BB0011BD40 /* Info.plist */,
 				A6511E701C5F91BB0011BD40 /* LastWatchedEpisode.xcdatamodeld */,
@@ -80,6 +83,14 @@
 				A6511E651C5F91BB0011BD40 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A6511E7E1C5F99A50011BD40 /* AppIcon.appiconset */ = {
+			isa = PBXGroup;
+			children = (
+				A6511E7F1C5F99A50011BD40 /* Contents.json */,
+			);
+			path = AppIcon.appiconset;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +154,7 @@
 				A6511E771C5F91BB0011BD40 /* LaunchScreen.storyboard in Resources */,
 				A6511E741C5F91BB0011BD40 /* Assets.xcassets in Resources */,
 				A6511E6F1C5F91BB0011BD40 /* Main.storyboard in Resources */,
+				A6511E8B1C5F99A50011BD40 /* Contents.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
