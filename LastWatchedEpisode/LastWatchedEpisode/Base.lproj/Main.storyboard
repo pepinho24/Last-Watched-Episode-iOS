@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M9q-ZT-y8A">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home Page-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController title="Home Page" id="BYZ-38-t0r" customClass="HomePageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -19,22 +19,184 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to the Last watched episode manager" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIE-sL-3CY">
-                                <rect key="frame" x="20" y="20" width="560" height="111"/>
+                                <rect key="frame" x="20" y="64" width="560" height="111"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N86-Mf-rr1">
+                                <rect key="frame" x="100" y="183" width="401" height="94"/>
+                                <state key="normal" title="Favorite shows"/>
+                                <connections>
+                                    <segue destination="art-ix-MQG" kind="show" id="UbY-sj-14w"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uu3-Dn-ceg">
+                                <rect key="frame" x="100" y="285" width="401" height="86"/>
+                                <state key="normal" title="Most popular shows"/>
+                                <connections>
+                                    <segue destination="iP3-7S-aQm" kind="show" id="xfM-aB-WNX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="N86-Mf-rr1" firstAttribute="top" secondItem="IIE-sL-3CY" secondAttribute="bottom" constant="8" symbolic="YES" id="0C3-DD-eUL"/>
+                            <constraint firstItem="N86-Mf-rr1" firstAttribute="centerX" secondItem="IIE-sL-3CY" secondAttribute="centerX" id="3Zb-zz-9jc"/>
                             <constraint firstItem="IIE-sL-3CY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="BpW-Vs-aEn"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uu3-Dn-ceg" secondAttribute="bottom" constant="229" id="HFB-sX-isS"/>
+                            <constraint firstItem="uu3-Dn-ceg" firstAttribute="leading" secondItem="N86-Mf-rr1" secondAttribute="leading" id="W6f-Gg-7uJ"/>
+                            <constraint firstItem="N86-Mf-rr1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="80" id="W9n-1H-Vd3"/>
                             <constraint firstItem="IIE-sL-3CY" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="YRS-ci-MJB"/>
+                            <constraint firstItem="uu3-Dn-ceg" firstAttribute="top" secondItem="N86-Mf-rr1" secondAttribute="bottom" constant="8" symbolic="YES" id="eZx-sE-cQg"/>
                             <constraint firstItem="IIE-sL-3CY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="fQ0-bk-qzI"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="IIE-sL-3CY" secondAttribute="bottom" constant="469" id="hTq-dZ-UX2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="N86-Mf-rr1" secondAttribute="bottom" constant="323" id="fXg-BZ-gpK"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="IIE-sL-3CY" secondAttribute="bottom" constant="425" id="hTq-dZ-UX2"/>
+                            <constraint firstItem="uu3-Dn-ceg" firstAttribute="trailing" secondItem="N86-Mf-rr1" secondAttribute="trailing" id="tuA-Nc-yZT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="PzU-Ur-idG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1272" y="479"/>
+        </scene>
+        <!--Most Popular Shows-->
+        <scene sceneID="QcT-3U-iFp">
+            <objects>
+                <viewController title="Most Popular Shows" id="iP3-7S-aQm" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LIc-hL-IgE"/>
+                        <viewControllerLayoutGuide type="bottom" id="sH3-wQ-s2J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M3D-t8-73v">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="These are the most popular shows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHf-T7-4e0">
+                                <rect key="frame" x="40" y="72" width="535" height="124"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lHf-T7-4e0" firstAttribute="top" secondItem="LIc-hL-IgE" secondAttribute="bottom" constant="8" symbolic="YES" id="9BY-Hn-prf"/>
+                            <constraint firstItem="sH3-wQ-s2J" firstAttribute="top" secondItem="lHf-T7-4e0" secondAttribute="bottom" constant="404" id="XyE-bX-F4b"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lHf-T7-4e0" secondAttribute="trailing" constant="5" id="tkd-eM-CGc"/>
+                            <constraint firstItem="lHf-T7-4e0" firstAttribute="leading" secondItem="M3D-t8-73v" secondAttribute="leadingMargin" constant="20" id="vzU-74-Rt3"/>
                         </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jji-wL-yWB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1272" y="1234"/>
+        </scene>
+        <!--Favorite shows-->
+        <scene sceneID="TMz-Zt-fw1">
+            <objects>
+                <viewController title="Favorite shows" id="art-ix-MQG" customClass="FavoriteShowsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HK1-Ej-VkN"/>
+                        <viewControllerLayoutGuide type="bottom" id="zCX-SC-0tU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wp6-2h-wBj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="These are your favorite shows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BkA-Yt-QXh">
+                                <rect key="frame" x="72" y="72" width="457" height="110"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZn-ES-U5N">
+                                <rect key="frame" x="156" y="190" width="288" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="288" id="gUq-pW-nGP"/>
+                                </constraints>
+                                <state key="normal" title="Add new show"/>
+                                <connections>
+                                    <segue destination="sOd-hI-Dwg" kind="show" id="PjE-PP-9Pu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BZn-ES-U5N" firstAttribute="top" secondItem="BkA-Yt-QXh" secondAttribute="bottom" constant="8" symbolic="YES" id="2os-Ts-6Mn"/>
+                            <constraint firstItem="BkA-Yt-QXh" firstAttribute="centerX" secondItem="wp6-2h-wBj" secondAttribute="centerX" id="8dg-T6-Vq4"/>
+                            <constraint firstItem="BkA-Yt-QXh" firstAttribute="leading" secondItem="wp6-2h-wBj" secondAttribute="leadingMargin" constant="52" id="Yuf-Wf-uTQ"/>
+                            <constraint firstItem="zCX-SC-0tU" firstAttribute="top" secondItem="BZn-ES-U5N" secondAttribute="bottom" constant="362" id="Zvn-Fh-Zkg"/>
+                            <constraint firstItem="zCX-SC-0tU" firstAttribute="top" secondItem="BkA-Yt-QXh" secondAttribute="bottom" constant="418" id="fPB-Fv-4KQ"/>
+                            <constraint firstItem="BZn-ES-U5N" firstAttribute="centerX" secondItem="BkA-Yt-QXh" secondAttribute="centerX" id="iA9-57-6OO"/>
+                            <constraint firstItem="BkA-Yt-QXh" firstAttribute="top" secondItem="HK1-Ej-VkN" secondAttribute="bottom" constant="8" symbolic="YES" id="jMW-OK-694"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JdS-YP-N7f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1975" y="479"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="iRc-1L-0tM">
+            <objects>
+                <viewController id="sOd-hI-Dwg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AQD-sU-m7G"/>
+                        <viewControllerLayoutGuide type="bottom" id="UAW-fG-C3n"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YOa-RB-ijx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new show to your Favorites list" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJx-Hz-WY6">
+                                <rect key="frame" x="20" y="72" width="560" height="86"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="86" id="xuE-w2-uzj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfW-St-nB5">
+                                <rect key="frame" x="20" y="534" width="560" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="gqM-Cb-jLq"/>
+                                </constraints>
+                                <state key="normal" title="Add show to Favorites"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MfW-St-nB5" firstAttribute="leading" secondItem="YOa-RB-ijx" secondAttribute="leadingMargin" id="9Fh-rN-dtm"/>
+                            <constraint firstAttribute="bottom" secondItem="MfW-St-nB5" secondAttribute="bottom" constant="20" symbolic="YES" id="Izz-97-jMR"/>
+                            <constraint firstItem="MfW-St-nB5" firstAttribute="trailing" secondItem="YOa-RB-ijx" secondAttribute="trailingMargin" id="Jwr-ct-zvN"/>
+                            <constraint firstItem="GJx-Hz-WY6" firstAttribute="top" secondItem="AQD-sU-m7G" secondAttribute="bottom" constant="8" symbolic="YES" id="YQe-zP-onc"/>
+                            <constraint firstItem="GJx-Hz-WY6" firstAttribute="trailing" secondItem="MfW-St-nB5" secondAttribute="trailing" id="pNb-IB-zIe"/>
+                            <constraint firstItem="MfW-St-nB5" firstAttribute="leading" secondItem="GJx-Hz-WY6" secondAttribute="leading" id="siy-iC-Pbg"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KMi-sb-d4v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2681" y="479"/>
+        </scene>
+        <!--Navigation TItle-->
+        <scene sceneID="gDe-G6-37o">
+            <objects>
+                <navigationController title="Navigation TItle" automaticallyAdjustsScrollViewInsets="NO" id="M9q-ZT-y8A" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gzd-Bd-zKX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Uua-o4-qzJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WLg-qC-1up" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="540" y="479"/>
         </scene>
