@@ -9,6 +9,14 @@
 #import "FavoriteShowsViewController.h"
 #import "AddMovieViewController.h"
 
+//#import "PhoneDetailsViewController.h"
+
+#import "AppDelegate.h"
+
+#import "PMShow.h"
+
+//#import "PhoneCell.h"
+
 @interface FavoriteShowsViewController ()
 
 @end
@@ -17,25 +25,63 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.title = @"Superheroes Database!";
-    //[self.tableView registerClass: UITableViewCell.self forCellReuseIdentifier:@"SuperheroCell"];
-    
-    UIBarButtonItem *btnShowAddAlertVC = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                                                                       target:self
-                                                                                       action: @selector(goToAddVC)];
-    
-    self.navigationItem.rightBarButtonItem = btnShowAddAlertVC;}
+    UIBarButtonItem *addBarButton =
+    [[UIBarButtonItem alloc]
+     initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+     target:self
+     action:@selector(showAdd)];
+   
+    self.navigationItem.rightBarButtonItem = addBarButton;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)goToAddVC{
+
+-(void)showAdd{
     NSString *storyBoardId = @"addMovieScene";
     
     AddMovieViewController *addMovieVC =
     [self.storyboard instantiateViewControllerWithIdentifier:storyBoardId];
-    [self.navigationController pushViewController:addMovieVC animated:YES];}
+    [self.navigationController pushViewController:addMovieVC animated:YES];
+}
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    PMShow *sh = [PMShow showWithTitle: @"Gotham"
+                        andDescription: @"Batman's city"];
+    
+       self.shows = [NSMutableArray arrayWithObjects: sh, nil];
+    self.tableViewFavoriteShows.dataSource = self;
+//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//    self.shows = [delegate.data shows];
+//    [self.tableView reloadData];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.shows.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView
+        cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    
+    static NSString *cellIdentifier = @"ShowTableViewCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
+    }
+    
+    
+    cell.textLabel.text = [NSString stringWithFormat: @"%@", [self.shows[indexPath.row] title]];
+    
+    return cell;
+}
+
 /*
 #pragma mark - Navigation
 

@@ -111,28 +111,26 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZn-ES-U5N">
-                                <rect key="frame" x="156" y="190" width="288" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="288" id="gUq-pW-nGP"/>
-                                </constraints>
-                                <state key="normal" title="Add new show"/>
-                                <connections>
-                                    <segue destination="sOd-hI-Dwg" kind="show" id="PjE-PP-9Pu"/>
-                                </connections>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mlG-t6-Mbf">
+                                <rect key="frame" x="20" y="190" width="560" height="390"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="BZn-ES-U5N" firstAttribute="top" secondItem="BkA-Yt-QXh" secondAttribute="bottom" constant="8" symbolic="YES" id="2os-Ts-6Mn"/>
                             <constraint firstItem="BkA-Yt-QXh" firstAttribute="centerX" secondItem="wp6-2h-wBj" secondAttribute="centerX" id="8dg-T6-Vq4"/>
+                            <constraint firstItem="mlG-t6-Mbf" firstAttribute="leading" secondItem="wp6-2h-wBj" secondAttribute="leadingMargin" id="HaQ-xF-eGG"/>
+                            <constraint firstItem="mlG-t6-Mbf" firstAttribute="centerX" secondItem="BkA-Yt-QXh" secondAttribute="centerX" id="YbL-6Y-klH"/>
                             <constraint firstItem="BkA-Yt-QXh" firstAttribute="leading" secondItem="wp6-2h-wBj" secondAttribute="leadingMargin" constant="52" id="Yuf-Wf-uTQ"/>
-                            <constraint firstItem="zCX-SC-0tU" firstAttribute="top" secondItem="BZn-ES-U5N" secondAttribute="bottom" constant="362" id="Zvn-Fh-Zkg"/>
                             <constraint firstItem="zCX-SC-0tU" firstAttribute="top" secondItem="BkA-Yt-QXh" secondAttribute="bottom" constant="418" id="fPB-Fv-4KQ"/>
-                            <constraint firstItem="BZn-ES-U5N" firstAttribute="centerX" secondItem="BkA-Yt-QXh" secondAttribute="centerX" id="iA9-57-6OO"/>
                             <constraint firstItem="BkA-Yt-QXh" firstAttribute="top" secondItem="HK1-Ej-VkN" secondAttribute="bottom" constant="8" symbolic="YES" id="jMW-OK-694"/>
+                            <constraint firstItem="mlG-t6-Mbf" firstAttribute="top" secondItem="BkA-Yt-QXh" secondAttribute="bottom" constant="8" symbolic="YES" id="jg8-aH-d8B"/>
+                            <constraint firstAttribute="bottom" secondItem="mlG-t6-Mbf" secondAttribute="bottom" constant="20" symbolic="YES" id="zse-0B-ba0"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableViewFavoriteShows" destination="mlG-t6-Mbf" id="HyP-Lo-BtX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JdS-YP-N7f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

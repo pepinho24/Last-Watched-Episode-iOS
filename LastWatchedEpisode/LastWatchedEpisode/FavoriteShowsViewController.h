@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FavoriteShowsViewController : UIViewController
+@interface FavoriteShowsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableViewFavoriteShows;
+
+@property (strong, nonatomic) NSMutableArray *shows;
 
 @end

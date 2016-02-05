@@ -17,6 +17,7 @@
 		A6511E8B1C5F99A50011BD40 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = A6511E7F1C5F99A50011BD40 /* Contents.json */; };
 		A6A6AEE31C6280890020DB3F /* FavoriteShowsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A6AEE21C6280890020DB3F /* FavoriteShowsViewController.m */; };
 		A6A6AEE61C641C7B0020DB3F /* AddMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A6AEE51C641C7B0020DB3F /* AddMovieViewController.m */; };
+		A6A6AEEA1C641E0F0020DB3F /* PMShow.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A6AEE91C641E0F0020DB3F /* PMShow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,8 @@
 		A6A6AEE21C6280890020DB3F /* FavoriteShowsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteShowsViewController.m; sourceTree = "<group>"; };
 		A6A6AEE41C641C7B0020DB3F /* AddMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMovieViewController.h; sourceTree = "<group>"; };
 		A6A6AEE51C641C7B0020DB3F /* AddMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMovieViewController.m; sourceTree = "<group>"; };
+		A6A6AEE81C641E0F0020DB3F /* PMShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMShow.h; sourceTree = "<group>"; };
+		A6A6AEE91C641E0F0020DB3F /* PMShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMShow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,7 @@
 		A6511E631C5F91BA0011BD40 /* LastWatchedEpisode */ = {
 			isa = PBXGroup;
 			children = (
+				A6A6AEE71C641DDB0020DB3F /* Models */,
 				A6A6AEE01C6280370020DB3F /* ViewControllers */,
 				A6511E671C5F91BB0011BD40 /* AppDelegate.h */,
 				A6511E681C5F91BB0011BD40 /* AppDelegate.m */,
@@ -109,6 +113,15 @@
 				A6A6AEE51C641C7B0020DB3F /* AddMovieViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A6A6AEE71C641DDB0020DB3F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A6A6AEE81C641E0F0020DB3F /* PMShow.h */,
+				A6A6AEE91C641E0F0020DB3F /* PMShow.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +198,7 @@
 			files = (
 				A6A6AEE31C6280890020DB3F /* FavoriteShowsViewController.m in Sources */,
 				A6511E721C5F91BB0011BD40 /* LastWatchedEpisode.xcdatamodeld in Sources */,
+				A6A6AEEA1C641E0F0020DB3F /* PMShow.m in Sources */,
 				A6511E6C1C5F91BB0011BD40 /* HomePageViewController.m in Sources */,
 				A6A6AEE61C641C7B0020DB3F /* AddMovieViewController.m in Sources */,
 				A6511E691C5F91BB0011BD40 /* AppDelegate.m in Sources */,
