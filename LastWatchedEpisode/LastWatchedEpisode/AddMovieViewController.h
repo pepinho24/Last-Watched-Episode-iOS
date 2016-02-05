@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface AddMovieViewController : UIViewController
+- (IBAction)AddShowBtnClick:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *textFieldTitle;
+
+@property (weak, nonatomic) IBOutlet UITextField *textFieldDescription;
 
 @end

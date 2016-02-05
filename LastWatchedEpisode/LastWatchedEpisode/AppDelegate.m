@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 
+
 @interface AppDelegate ()
 
 @end
@@ -16,8 +17,19 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.data = [[LocalData alloc] init];
+    
+    NSArray *shows = [NSArray arrayWithObjects:
+                      
+                       [PMShow showWithTitle:@"The Flash" andDescription:@"The fastest man alive."],
+                       
+                       nil];
+    
+    [shows enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.data addShow:obj];
+    }];
     return YES;
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

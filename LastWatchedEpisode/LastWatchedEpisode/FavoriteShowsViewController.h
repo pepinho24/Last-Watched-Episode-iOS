@@ -12,6 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableViewFavoriteShows;
 
-@property (strong, nonatomic) NSMutableArray *shows;
+@property (strong, nonatomic) NSArray *shows;
 
 @end

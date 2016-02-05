@@ -7,6 +7,8 @@
 //
 
 #import "AddMovieViewController.h"
+#import "AppDelegate.h"
+#import "PMShow.h"
 
 @interface AddMovieViewController ()
 
@@ -23,7 +25,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)AddShowBtnClick:(id)sender{
+    PMShow *sh= [PMShow showWithTitle:self.textFieldTitle.text andDescription:self.textFieldDescription.text];
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    [delegate.data addShow:sh];
+    
+    [self.navigationController popViewControllerAnimated:YES];}
 /*
 #pragma mark - Navigation
 

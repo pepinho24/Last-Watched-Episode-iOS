@@ -12,7 +12,7 @@
 //#import "PhoneDetailsViewController.h"
 
 #import "AppDelegate.h"
-
+#import "LocalData.h"
 #import "PMShow.h"
 
 //#import "PhoneCell.h"
@@ -52,11 +52,11 @@
     PMShow *sh = [PMShow showWithTitle: @"Gotham"
                         andDescription: @"Batman's city"];
     
-       self.shows = [NSMutableArray arrayWithObjects: sh, nil];
+       self.shows = [NSArray arrayWithObjects: sh, nil];
     self.tableViewFavoriteShows.dataSource = self;
-//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-//    self.shows = [delegate.data shows];
-//    [self.tableView reloadData];
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    self.shows = [delegate.data shows];
+    [self.tableViewFavoriteShows reloadData];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
