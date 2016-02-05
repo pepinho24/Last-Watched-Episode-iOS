@@ -11,9 +11,11 @@
 
 @interface LocalData : NSObject
 
--(NSArray*) shows;
+-(NSMutableArray*) shows;
 
 -(void) addShow: (PMShow *) show;
 
 -(void) deleteShow: (PMShow *) show;
+
+-(NSMutableArray *) loadShows;
 @end

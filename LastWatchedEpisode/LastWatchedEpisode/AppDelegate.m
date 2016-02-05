@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 
-
 @interface AppDelegate ()
 
 @end
@@ -19,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.data = [[LocalData alloc] init];
     
-    NSArray *shows = [NSArray arrayWithObjects:
+    NSMutableArray *shows = [NSMutableArray arrayWithObjects:
                       
                        [PMShow showWithTitle:@"The Flash" andDescription:@"The fastest man alive."],
                        

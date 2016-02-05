@@ -52,9 +52,21 @@
     PMShow *sh = [PMShow showWithTitle: @"Gotham"
                         andDescription: @"Batman's city"];
     
-       self.shows = [NSArray arrayWithObjects: sh, nil];
-    self.tableViewFavoriteShows.dataSource = self;
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
+    self.shows = [NSArray arrayWithObjects: sh, nil];
+    NSManagedObjectContext *managedContext =delegate.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Show"];
+    
+    NSArray *showEntities = [managedContext executeFetchRequest:request error:nil];
+    
+    for(int i = 0; i < showEntities.count; i ++) {
+        NSManagedObject *showEntity = showEntities[i];
+        PMShow *show = [PMShow showWithTitle:[showEntity valueForKey:@"title"]
+                              andDescription:[showEntity valueForKey:@"plot"]];
+        [[delegate.data shows] addObject: show];
+    }
+    self.tableViewFavoriteShows.dataSource = self;
     self.shows = [delegate.data shows];
     [self.tableViewFavoriteShows reloadData];
 }

@@ -11,11 +11,25 @@
 @implementation PMShow
 @synthesize description = _description;
 
+typedef enum daysOfWeek {
+    Sunday,
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday
+} DayOfWeek;
+
+
+
 -(instancetype)initWithTitle:(NSString *)title andDescription:(NSString *)description{
     if(self = [super init]) {
         self.title = title;
         self.description = description;
     }
+//    
+//    DayOfWeek dd = Sunday;
     
     return self;
 }

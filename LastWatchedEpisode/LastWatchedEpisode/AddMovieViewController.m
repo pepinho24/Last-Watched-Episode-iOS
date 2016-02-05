@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "PMShow.h"
 
+#import <CoreData/CoreData.h>
+
 @interface AddMovieViewController ()
 
 @end
@@ -26,10 +28,33 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)AddShowBtnClick:(id)sender{
-    PMShow *sh= [PMShow showWithTitle:self.textFieldTitle.text andDescription:self.textFieldDescription.text];
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    [delegate.data addShow:sh];
+  
+    NSString* title =self.textFieldTitle.text;
+    NSString* descr =self.textFieldDescription.text;
+    // check if fields text is null or empty
+    NSManagedObjectContext* managedContext = delegate.managedObjectContext;
+    NSEntityDescription *showEntity = [NSEntityDescription entityForName:@"Show" inManagedObjectContext:managedContext];
+    
+    
+    
+    NSManagedObject *show = [[NSManagedObject alloc] initWithEntity:showEntity insertIntoManagedObjectContext:managedContext];
+    
+    // K-V C key-value coding 
+    [show setValue:title forKey:@"title"];
+    [show setValue:descr forKey:@"plot"];
+    
+     NSError *mocSaveError = nil;
+    
+    if (![managedContext save:&mocSaveError])
+    {
+        NSLog(@"Save did not complete successfully. Error: %@",
+              [mocSaveError localizedDescription]);
+    }
+    
+    PMShow *sh= [PMShow showWithTitle:self.textFieldTitle.text andDescription:self.textFieldDescription.text];
+      [delegate.data addShow:sh];
     
     [self.navigationController popViewControllerAnimated:YES];}
 /*

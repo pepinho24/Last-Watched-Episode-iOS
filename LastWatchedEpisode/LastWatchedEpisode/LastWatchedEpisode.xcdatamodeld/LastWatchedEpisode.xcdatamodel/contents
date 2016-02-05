@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
+    <entity name="Show" syncable="YES">
+        <attribute name="plot" attributeType="String" minValueString="2" defaultValueString="No description available!" syncable="YES"/>
+        <attribute name="title" attributeType="String" minValueString="2" maxValueString="50" syncable="YES"/>
+    </entity>
+    <entity name="Weekday" syncable="YES"/>
+    <elements>
+        <element name="Weekday" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="Show" positionX="-54" positionY="-9" width="128" height="75"/>
+    </elements>
 </model>
