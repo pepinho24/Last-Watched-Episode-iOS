@@ -7,6 +7,7 @@
 //
 
 #import "FavoriteShowsViewController.h"
+#import "AddMovieViewController.h"
 
 @interface FavoriteShowsViewController ()
 
@@ -16,14 +17,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
+    //self.title = @"Superheroes Database!";
+    //[self.tableView registerClass: UITableViewCell.self forCellReuseIdentifier:@"SuperheroCell"];
+    
+    UIBarButtonItem *btnShowAddAlertVC = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                       target:self
+                                                                                       action: @selector(goToAddVC)];
+    
+    self.navigationItem.rightBarButtonItem = btnShowAddAlertVC;}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)goToAddVC{
+    NSString *storyBoardId = @"addMovieScene";
+    
+    AddMovieViewController *addMovieVC =
+    [self.storyboard instantiateViewControllerWithIdentifier:storyBoardId];
+    [self.navigationController pushViewController:addMovieVC animated:YES];}
 /*
 #pragma mark - Navigation
 

@@ -138,10 +138,10 @@
             </objects>
             <point key="canvasLocation" x="1975" y="479"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Movie View Controller-->
         <scene sceneID="iRc-1L-0tM">
             <objects>
-                <viewController id="sOd-hI-Dwg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addMovieScene" id="sOd-hI-Dwg" customClass="AddMovieViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AQD-sU-m7G"/>
                         <viewControllerLayoutGuide type="bottom" id="UAW-fG-C3n"/>
