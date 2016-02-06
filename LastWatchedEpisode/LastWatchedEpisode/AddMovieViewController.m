@@ -33,13 +33,15 @@
   
     NSString* title =self.textFieldTitle.text;
     NSString* descr =self.textFieldDescription.text;
-    // check if fields text is null or empty
+    
+    if ([title length] == 0) {
+        // show notification that title cannot be empty
+        return;
+    }
+    
     NSManagedObjectContext* managedContext = delegate.managedObjectContext;
     NSEntityDescription *showEntity = [NSEntityDescription entityForName:@"Show" inManagedObjectContext:managedContext];
-    
-    
-    
-    NSManagedObject *show = [[NSManagedObject alloc] initWithEntity:showEntity insertIntoManagedObjectContext:managedContext];
+        NSManagedObject *show = [[NSManagedObject alloc] initWithEntity:showEntity insertIntoManagedObjectContext:managedContext];
     
     // K-V C key-value coding 
     [show setValue:title forKey:@"title"];
@@ -56,7 +58,8 @@
     PMShow *sh= [PMShow showWithTitle:self.textFieldTitle.text andDescription:self.textFieldDescription.text];
       [delegate.data addShow:sh];
     
-    [self.navigationController popViewControllerAnimated:YES];}
+    [self.navigationController popViewControllerAnimated:YES];
+}
 /*
 #pragma mark - Navigation
 

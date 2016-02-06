@@ -17,16 +17,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.data = [[LocalData alloc] init];
+//    NSMutableArray *shows = [NSMutableArray arrayWithObjects:
+//                      
+//                       [PMShow showWithTitle:@"The Flash" andDescription:@"The fastest man alive."],
+//                       
+//                       nil];
     
-    NSMutableArray *shows = [NSMutableArray arrayWithObjects:
-                      
-                       [PMShow showWithTitle:@"The Flash" andDescription:@"The fastest man alive."],
-                       
-                       nil];
-    
-    [shows enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.data addShow:obj];
-    }];
+//    [shows enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [self.data addShow:obj];
+//    }];
     return YES;
 
 }
