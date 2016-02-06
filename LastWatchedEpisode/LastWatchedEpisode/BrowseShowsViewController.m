@@ -35,7 +35,7 @@
     // replace space with +
     // add paging
     NSString *url = [NSString stringWithFormat:@"http://www.omdbapi.com/?s=%@", self.textFieldSearchShow.text];
-    
+    url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
         NSArray *showsDicts = [result objectForKey:@"Search"];
