@@ -21,8 +21,11 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableViewSearchResults;
 
 - (IBAction)onSearchBtnClick:(id)sender;
+- (IBAction)onShowMoreResultsBtnClick:(id)sender;
 
 @property NSMutableArray *_shows;
+@property int pageCount;
+@property NSString *showName;
 
 @property (strong, nonatomic) PMHttpData *data;
 
@@ -30,11 +33,8 @@
 
 @implementation BrowseShowsViewController
 
--(void)onSearchBtnClick:(id)sender{
-    
-    // replace space with +
-    // add paging
-    NSString *url = [NSString stringWithFormat:@"http://www.omdbapi.com/?s=%@", self.textFieldSearchShow.text];
+-(void)getShowsFromUrl{
+    NSString *url = [NSString stringWithFormat:@"http://www.omdbapi.com/?s=%@&page=%i", self.showName,self.pageCount];
     url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
@@ -44,7 +44,7 @@
         [showsDicts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [shows addObject:[[PMShow alloc] initWithDict: obj]];
         }];
-        self._shows = [NSMutableArray array];
+        
         [self._shows addObjectsFromArray:shows];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -55,14 +55,31 @@
 
 }
 
+-(void)onSearchBtnClick:(id)sender{
+    
+    // add paging
+    self.pageCount = 1;
+    self._shows = [NSMutableArray array];
+    self.showName =self.textFieldSearchShow.text;
+    [self getShowsFromUrl];
+}
+
+- (IBAction)onShowMoreResultsBtnClick:(id)sender {
+    self.pageCount++;
+    // show notification if clicked before assigning value to show name
+    [self getShowsFromUrl];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.pageCount = 1;
     self.data = [[PMHttpData alloc] init];
+    
+    [self.textFieldSearchShow becomeFirstResponder];
     
     self.tableViewSearchResults.delegate = self;
     self.tableViewSearchResults.dataSource = self;
-     self._shows = [NSMutableArray array];
+    self._shows = [NSMutableArray array];
     
 }
 

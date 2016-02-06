@@ -188,22 +188,32 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DXv-ts-TtZ">
-                                <rect key="frame" x="20" y="247" width="560" height="345"/>
+                                <rect key="frame" x="20" y="247" width="560" height="295"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iL4-0s-t8q">
+                                <rect key="frame" x="20" y="550" width="560" height="30"/>
+                                <state key="normal" title="Show more results"/>
+                                <connections>
+                                    <action selector="onShowMoreResultsBtnClick:" destination="aa4-N9-Y4G" eventType="touchUpInside" id="hg0-wr-TJs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gqK-kS-Nmt" firstAttribute="top" secondItem="LY7-Yq-Q3m" secondAttribute="bottom" id="3s1-iX-oof"/>
                             <constraint firstItem="gqK-kS-Nmt" firstAttribute="leading" secondItem="1lc-CG-l3M" secondAttribute="leadingMargin" constant="13" id="9Cl-gX-UwY"/>
-                            <constraint firstItem="Ncp-Pk-nIR" firstAttribute="top" secondItem="DXv-ts-TtZ" secondAttribute="bottom" constant="8" symbolic="YES" id="Fqa-tO-R1M"/>
+                            <constraint firstItem="Ncp-Pk-nIR" firstAttribute="top" secondItem="DXv-ts-TtZ" secondAttribute="bottom" constant="58" id="Fqa-tO-R1M"/>
                             <constraint firstItem="tv0-iq-XL3" firstAttribute="centerX" secondItem="gqK-kS-Nmt" secondAttribute="centerX" id="GwC-BM-PCz"/>
+                            <constraint firstItem="iL4-0s-t8q" firstAttribute="leading" secondItem="DXv-ts-TtZ" secondAttribute="leading" id="Ham-Y7-Jyk"/>
                             <constraint firstItem="DXv-ts-TtZ" firstAttribute="top" secondItem="MoH-HL-7Oc" secondAttribute="bottom" constant="8" symbolic="YES" id="I21-bo-HhE"/>
                             <constraint firstItem="tv0-iq-XL3" firstAttribute="baseline" secondItem="gqK-kS-Nmt" secondAttribute="baseline" constant="2" id="M6j-xC-ZVW"/>
                             <constraint firstItem="DXv-ts-TtZ" firstAttribute="leading" secondItem="MoH-HL-7Oc" secondAttribute="leading" id="OZF-Jh-OAg"/>
                             <constraint firstItem="tv0-iq-XL3" firstAttribute="trailing" secondItem="MoH-HL-7Oc" secondAttribute="trailing" id="Qmx-K6-C8h"/>
                             <constraint firstItem="MoH-HL-7Oc" firstAttribute="top" secondItem="tv0-iq-XL3" secondAttribute="bottom" constant="8" symbolic="YES" id="bwx-de-fvH"/>
+                            <constraint firstAttribute="bottom" secondItem="iL4-0s-t8q" secondAttribute="bottom" constant="20" symbolic="YES" id="gXb-MF-gTV"/>
                             <constraint firstItem="tv0-iq-XL3" firstAttribute="top" secondItem="LY7-Yq-Q3m" secondAttribute="bottom" constant="98" id="kQT-uo-LEV"/>
+                            <constraint firstItem="iL4-0s-t8q" firstAttribute="trailing" secondItem="DXv-ts-TtZ" secondAttribute="trailing" id="st5-I0-fUb"/>
                             <constraint firstItem="DXv-ts-TtZ" firstAttribute="leading" secondItem="1lc-CG-l3M" secondAttribute="leadingMargin" id="tab-dx-9tX"/>
                             <constraint firstItem="MoH-HL-7Oc" firstAttribute="leading" secondItem="tv0-iq-XL3" secondAttribute="leading" id="wHw-aO-eYa"/>
                             <constraint firstItem="DXv-ts-TtZ" firstAttribute="trailing" secondItem="MoH-HL-7Oc" secondAttribute="trailing" id="yVA-1L-tgT"/>
