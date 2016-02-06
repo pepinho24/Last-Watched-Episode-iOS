@@ -64,7 +64,7 @@
         <!--Most Popular Shows-->
         <scene sceneID="QcT-3U-iFp">
             <objects>
-                <viewController title="Most Popular Shows" id="iP3-7S-aQm" sceneMemberID="viewController">
+                <viewController title="Most Popular Shows" id="iP3-7S-aQm" customClass="PopularShowsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LIc-hL-IgE"/>
                         <viewControllerLayoutGuide type="bottom" id="sH3-wQ-s2J"/>
@@ -79,6 +79,10 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WTH-Qe-hQM">
+                                <rect key="frame" x="20" y="197" width="555" height="395"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -88,6 +92,9 @@
                             <constraint firstItem="lHf-T7-4e0" firstAttribute="leading" secondItem="M3D-t8-73v" secondAttribute="leadingMargin" constant="20" id="vzU-74-Rt3"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mostPopularShowsTableView" destination="WTH-Qe-hQM" id="Gm0-8I-ggk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jji-wL-yWB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

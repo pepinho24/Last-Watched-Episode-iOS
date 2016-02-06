@@ -19,6 +19,8 @@
 		A6A6AEE61C641C7B0020DB3F /* AddMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A6AEE51C641C7B0020DB3F /* AddMovieViewController.m */; };
 		A6A6AEEA1C641E0F0020DB3F /* PMShow.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A6AEE91C641E0F0020DB3F /* PMShow.m */; };
 		A6A6AEED1C64C1D90020DB3F /* LocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A6AEEC1C64C1D90020DB3F /* LocalData.m */; };
+		A6D64B191C65739000919A89 /* PMHttpData.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D64B181C65739000919A89 /* PMHttpData.m */; };
+		A6D64B221C65768700919A89 /* PopularShowsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D64B211C65768700919A89 /* PopularShowsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,11 @@
 		A6A6AEE91C641E0F0020DB3F /* PMShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMShow.m; sourceTree = "<group>"; };
 		A6A6AEEB1C64C1D90020DB3F /* LocalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalData.h; sourceTree = "<group>"; };
 		A6A6AEEC1C64C1D90020DB3F /* LocalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalData.m; sourceTree = "<group>"; };
+		A6D64B171C65739000919A89 /* PMHttpData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMHttpData.h; sourceTree = "<group>"; };
+		A6D64B181C65739000919A89 /* PMHttpData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMHttpData.m; sourceTree = "<group>"; };
+		A6D64B1A1C6573BF00919A89 /* PMHttpDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMHttpDataModel.h; sourceTree = "<group>"; };
+		A6D64B201C65768700919A89 /* PopularShowsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularShowsViewController.h; sourceTree = "<group>"; };
+		A6D64B211C65768700919A89 /* PopularShowsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularShowsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +81,8 @@
 		A6511E631C5F91BA0011BD40 /* LastWatchedEpisode */ = {
 			isa = PBXGroup;
 			children = (
+				A6D64B161C65735C00919A89 /* Data */,
+				A6D64B151C65735100919A89 /* HttpData */,
 				A6A6AEE71C641DDB0020DB3F /* Models */,
 				A6A6AEE01C6280370020DB3F /* ViewControllers */,
 				A6511E671C5F91BB0011BD40 /* AppDelegate.h */,
@@ -85,8 +94,6 @@
 				A6511E781C5F91BB0011BD40 /* Info.plist */,
 				A6511E701C5F91BB0011BD40 /* LastWatchedEpisode.xcdatamodeld */,
 				A6511E641C5F91BB0011BD40 /* Supporting Files */,
-				A6A6AEEB1C64C1D90020DB3F /* LocalData.h */,
-				A6A6AEEC1C64C1D90020DB3F /* LocalData.m */,
 			);
 			path = LastWatchedEpisode;
 			sourceTree = "<group>";
@@ -116,6 +123,8 @@
 				A6A6AEE21C6280890020DB3F /* FavoriteShowsViewController.m */,
 				A6A6AEE41C641C7B0020DB3F /* AddMovieViewController.h */,
 				A6A6AEE51C641C7B0020DB3F /* AddMovieViewController.m */,
+				A6D64B201C65768700919A89 /* PopularShowsViewController.h */,
+				A6D64B211C65768700919A89 /* PopularShowsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -127,6 +136,25 @@
 				A6A6AEE91C641E0F0020DB3F /* PMShow.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		A6D64B151C65735100919A89 /* HttpData */ = {
+			isa = PBXGroup;
+			children = (
+				A6D64B171C65739000919A89 /* PMHttpData.h */,
+				A6D64B181C65739000919A89 /* PMHttpData.m */,
+				A6D64B1A1C6573BF00919A89 /* PMHttpDataModel.h */,
+			);
+			name = HttpData;
+			sourceTree = "<group>";
+		};
+		A6D64B161C65735C00919A89 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A6A6AEEB1C64C1D90020DB3F /* LocalData.h */,
+				A6A6AEEC1C64C1D90020DB3F /* LocalData.m */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,9 +232,11 @@
 				A6A6AEE31C6280890020DB3F /* FavoriteShowsViewController.m in Sources */,
 				A6511E721C5F91BB0011BD40 /* LastWatchedEpisode.xcdatamodeld in Sources */,
 				A6A6AEEA1C641E0F0020DB3F /* PMShow.m in Sources */,
+				A6D64B221C65768700919A89 /* PopularShowsViewController.m in Sources */,
 				A6A6AEED1C64C1D90020DB3F /* LocalData.m in Sources */,
 				A6511E6C1C5F91BB0011BD40 /* HomePageViewController.m in Sources */,
 				A6A6AEE61C641C7B0020DB3F /* AddMovieViewController.m in Sources */,
+				A6D64B191C65739000919A89 /* PMHttpData.m in Sources */,
 				A6511E691C5F91BB0011BD40 /* AppDelegate.m in Sources */,
 				A6511E661C5F91BB0011BD40 /* main.m in Sources */,
 			);
