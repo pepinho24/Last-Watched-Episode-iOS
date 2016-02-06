@@ -28,8 +28,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.labelTitle.text = @"Most Popular Shows";
-// TODO : Check why does not get data
     NSString *url = @"http://www.omdbapi.com/?s=The+flash";
+    self.data = [[PMHttpData alloc] init];
+    
+    self.mostPopularShowsTableView.delegate = self;
+    self.mostPopularShowsTableView.dataSource = self;
+    
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
         NSArray *showsDicts = [result objectForKey:@"Search"];
         
@@ -37,10 +41,11 @@
         [showsDicts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [shows addObject:[[PMShow alloc] initWithDict: obj]];
         }];
-        
+        self._shows = [NSMutableArray array];
         [self._shows addObjectsFromArray:shows];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             [self.mostPopularShowsTableView reloadData];
         });
     }];
@@ -52,15 +57,48 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - Table view data source
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self._shows.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    if(cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:@"Cell"];
+    }
+    
+    cell.textLabel.text = [NSString stringWithFormat: @"%@", [self._shows[indexPath.row] title]];
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath  {
+    
+    //    DMCourseDetailsViewController *courseDetailsVC = [self.storyboard instantiateViewControllerWithIdentifier: @"CourseDetailsScene"];
+    //
+    //    courseDetailsVC.courseId = [self.courses[indexPath.row] courseId];
+    //    courseDetailsVC.courseTitle = [self.courses[indexPath.row] title];
+    //
+    //    [self.navigationController pushViewController:courseDetailsVC
+    //                                         animated:YES];
+}
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

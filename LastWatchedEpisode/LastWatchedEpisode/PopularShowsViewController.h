@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PopularShowsViewController : UIViewController
+@interface PopularShowsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *mostPopularShowsTableView;
 
 @end
