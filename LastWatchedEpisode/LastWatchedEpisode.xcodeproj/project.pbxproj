@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A60094B61C6606D90016CCC8 /* BrowseShowsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60094B51C6606D90016CCC8 /* BrowseShowsViewController.m */; };
 		A6511E661C5F91BB0011BD40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6511E651C5F91BB0011BD40 /* main.m */; };
 		A6511E691C5F91BB0011BD40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6511E681C5F91BB0011BD40 /* AppDelegate.m */; };
 		A6511E6C1C5F91BB0011BD40 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6511E6B1C5F91BB0011BD40 /* HomePageViewController.m */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A60094B41C6606D90016CCC8 /* BrowseShowsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseShowsViewController.h; sourceTree = "<group>"; };
+		A60094B51C6606D90016CCC8 /* BrowseShowsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseShowsViewController.m; sourceTree = "<group>"; };
 		A6511E611C5F91BA0011BD40 /* LastWatchedEpisode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LastWatchedEpisode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6511E651C5F91BB0011BD40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A6511E671C5F91BB0011BD40 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 				A6A6AEE51C641C7B0020DB3F /* AddMovieViewController.m */,
 				A6D64B201C65768700919A89 /* PopularShowsViewController.h */,
 				A6D64B211C65768700919A89 /* PopularShowsViewController.m */,
+				A60094B41C6606D90016CCC8 /* BrowseShowsViewController.h */,
+				A60094B51C6606D90016CCC8 /* BrowseShowsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				A6A6AEED1C64C1D90020DB3F /* LocalData.m in Sources */,
 				A6511E6C1C5F91BB0011BD40 /* HomePageViewController.m in Sources */,
 				A6A6AEE61C641C7B0020DB3F /* AddMovieViewController.m in Sources */,
+				A60094B61C6606D90016CCC8 /* BrowseShowsViewController.m in Sources */,
 				A6D64B191C65739000919A89 /* PMHttpData.m in Sources */,
 				A6511E691C5F91BB0011BD40 /* AppDelegate.m in Sources */,
 				A6511E661C5F91BB0011BD40 /* main.m in Sources */,

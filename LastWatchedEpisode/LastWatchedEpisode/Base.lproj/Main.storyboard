@@ -38,13 +38,23 @@
                                     <segue destination="iP3-7S-aQm" kind="show" id="xfM-aB-WNX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1e-f2-SKv">
+                                <rect key="frame" x="100" y="379" width="401" height="86"/>
+                                <state key="normal" title="Browse shows"/>
+                                <connections>
+                                    <segue destination="aa4-N9-Y4G" kind="show" id="Ncm-vh-Dqy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="N86-Mf-rr1" firstAttribute="top" secondItem="IIE-sL-3CY" secondAttribute="bottom" constant="8" symbolic="YES" id="0C3-DD-eUL"/>
                             <constraint firstItem="N86-Mf-rr1" firstAttribute="centerX" secondItem="IIE-sL-3CY" secondAttribute="centerX" id="3Zb-zz-9jc"/>
+                            <constraint firstItem="Z1e-f2-SKv" firstAttribute="top" secondItem="uu3-Dn-ceg" secondAttribute="bottom" constant="8" symbolic="YES" id="4lG-ww-RS3"/>
+                            <constraint firstItem="Z1e-f2-SKv" firstAttribute="leading" secondItem="uu3-Dn-ceg" secondAttribute="leading" id="9f7-9A-UCi"/>
                             <constraint firstItem="IIE-sL-3CY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="BpW-Vs-aEn"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="uu3-Dn-ceg" secondAttribute="bottom" constant="229" id="HFB-sX-isS"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Z1e-f2-SKv" secondAttribute="bottom" constant="135" id="NMl-er-0Bj"/>
                             <constraint firstItem="uu3-Dn-ceg" firstAttribute="leading" secondItem="N86-Mf-rr1" secondAttribute="leading" id="W6f-Gg-7uJ"/>
                             <constraint firstItem="N86-Mf-rr1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="80" id="W9n-1H-Vd3"/>
                             <constraint firstItem="IIE-sL-3CY" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="YRS-ci-MJB"/>
@@ -52,6 +62,7 @@
                             <constraint firstItem="IIE-sL-3CY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="fQ0-bk-qzI"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="N86-Mf-rr1" secondAttribute="bottom" constant="323" id="fXg-BZ-gpK"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="IIE-sL-3CY" secondAttribute="bottom" constant="425" id="hTq-dZ-UX2"/>
+                            <constraint firstItem="Z1e-f2-SKv" firstAttribute="trailing" secondItem="uu3-Dn-ceg" secondAttribute="trailing" id="sdt-0f-yu1"/>
                             <constraint firstItem="uu3-Dn-ceg" firstAttribute="trailing" secondItem="N86-Mf-rr1" secondAttribute="trailing" id="tuA-Nc-yZT"/>
                         </constraints>
                     </view>
@@ -142,6 +153,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JdS-YP-N7f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1975" y="479"/>
+        </scene>
+        <!--Browse Shows-->
+        <scene sceneID="hjm-Qd-dKY">
+            <objects>
+                <viewController title="Browse Shows" id="aa4-N9-Y4G" customClass="BrowseShowsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LY7-Yq-Q3m"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ncp-Pk-nIR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1lc-CG-l3M">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Browse shows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqK-kS-Nmt">
+                                <rect key="frame" x="33" y="64" width="535" height="124"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tv0-iq-XL3">
+                                <rect key="frame" x="20" y="162" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoH-HL-7Oc">
+                                <rect key="frame" x="20" y="200" width="560" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="Mxh-bf-hrc"/>
+                                </constraints>
+                                <state key="normal" title="Search show"/>
+                                <connections>
+                                    <action selector="onSearchBtnClick:" destination="aa4-N9-Y4G" eventType="touchUpInside" id="Jjq-bv-aKs"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DXv-ts-TtZ">
+                                <rect key="frame" x="20" y="247" width="560" height="345"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gqK-kS-Nmt" firstAttribute="top" secondItem="LY7-Yq-Q3m" secondAttribute="bottom" id="3s1-iX-oof"/>
+                            <constraint firstItem="gqK-kS-Nmt" firstAttribute="leading" secondItem="1lc-CG-l3M" secondAttribute="leadingMargin" constant="13" id="9Cl-gX-UwY"/>
+                            <constraint firstItem="Ncp-Pk-nIR" firstAttribute="top" secondItem="DXv-ts-TtZ" secondAttribute="bottom" constant="8" symbolic="YES" id="Fqa-tO-R1M"/>
+                            <constraint firstItem="tv0-iq-XL3" firstAttribute="centerX" secondItem="gqK-kS-Nmt" secondAttribute="centerX" id="GwC-BM-PCz"/>
+                            <constraint firstItem="DXv-ts-TtZ" firstAttribute="top" secondItem="MoH-HL-7Oc" secondAttribute="bottom" constant="8" symbolic="YES" id="I21-bo-HhE"/>
+                            <constraint firstItem="tv0-iq-XL3" firstAttribute="baseline" secondItem="gqK-kS-Nmt" secondAttribute="baseline" constant="2" id="M6j-xC-ZVW"/>
+                            <constraint firstItem="DXv-ts-TtZ" firstAttribute="leading" secondItem="MoH-HL-7Oc" secondAttribute="leading" id="OZF-Jh-OAg"/>
+                            <constraint firstItem="tv0-iq-XL3" firstAttribute="trailing" secondItem="MoH-HL-7Oc" secondAttribute="trailing" id="Qmx-K6-C8h"/>
+                            <constraint firstItem="MoH-HL-7Oc" firstAttribute="top" secondItem="tv0-iq-XL3" secondAttribute="bottom" constant="8" symbolic="YES" id="bwx-de-fvH"/>
+                            <constraint firstItem="tv0-iq-XL3" firstAttribute="top" secondItem="LY7-Yq-Q3m" secondAttribute="bottom" constant="98" id="kQT-uo-LEV"/>
+                            <constraint firstItem="DXv-ts-TtZ" firstAttribute="leading" secondItem="1lc-CG-l3M" secondAttribute="leadingMargin" id="tab-dx-9tX"/>
+                            <constraint firstItem="MoH-HL-7Oc" firstAttribute="leading" secondItem="tv0-iq-XL3" secondAttribute="leading" id="wHw-aO-eYa"/>
+                            <constraint firstItem="DXv-ts-TtZ" firstAttribute="trailing" secondItem="MoH-HL-7Oc" secondAttribute="trailing" id="yVA-1L-tgT"/>
+                            <constraint firstItem="MoH-HL-7Oc" firstAttribute="trailing" secondItem="1lc-CG-l3M" secondAttribute="trailingMargin" id="zxE-o0-TCt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableViewSearchResults" destination="DXv-ts-TtZ" id="00d-ZZ-v8P"/>
+                        <outlet property="textFieldSearchShow" destination="tv0-iq-XL3" id="mMq-zy-RLh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mgY-DT-t5L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1975" y="1234"/>
         </scene>
         <!--Add Movie View Controller-->
         <scene sceneID="iRc-1L-0tM">
