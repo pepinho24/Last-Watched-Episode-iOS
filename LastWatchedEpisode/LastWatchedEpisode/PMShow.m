@@ -33,7 +33,9 @@ typedef enum daysOfWeek {
     
     return self;
 }
-
+-(instancetype)initWithDict:(NSDictionary *)dict {
+    return [self initWithTitle:[dict objectForKey:@"Title"] andDescription:[dict objectForKey:@"Poster"]];
+}
 +(PMShow*) showWithTitle: (NSString*) title
              andDescription:(NSString*) description{
     return [[PMShow alloc] initWithTitle:title andDescription:description];

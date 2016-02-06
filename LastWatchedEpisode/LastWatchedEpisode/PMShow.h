@@ -16,7 +16,7 @@
 //@property (strong, nonatomic) NSString *imageUrl;
 //
 //@property CGFloat price;
-
+-(instancetype)initWithDict:(NSDictionary *)dict;
 
 -(instancetype)initWithTitle: (NSString*) title
                         andDescription:(NSString*) description;
