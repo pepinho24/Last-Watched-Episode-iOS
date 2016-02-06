@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 
 #import "PMHttpData.h"
-
+#import "RemoteShowDetailsViewController.h"
 #import "PMShow.h"
 
 @interface BrowseShowsViewController ()
@@ -34,7 +34,7 @@
 @implementation BrowseShowsViewController
 
 -(void)getShowsFromUrl{
-    NSString *url = [NSString stringWithFormat:@"http://www.omdbapi.com/?s=%@&page=%i", self.showName,self.pageCount];
+    NSString *url = [NSString stringWithFormat:@"http://www.omdbapi.com/?s=%@&page=%i&type=series", self.showName,self.pageCount];
     url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
@@ -111,13 +111,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath  {
     
-    //    DMCourseDetailsViewController *courseDetailsVC = [self.storyboard instantiateViewControllerWithIdentifier: @"CourseDetailsScene"];
-    //
-    //    courseDetailsVC.courseId = [self.courses[indexPath.row] courseId];
-    //    courseDetailsVC.courseTitle = [self.courses[indexPath.row] title];
-    //
-    //    [self.navigationController pushViewController:courseDetailsVC
-    //                                         animated:YES];
+        RemoteShowDetailsViewController *showDetailsVC = [self.storyboard instantiateViewControllerWithIdentifier: @"RemoteShowDetailsScene"];
+    
+        showDetailsVC.showTitle = [self._shows[indexPath.row] title];
+    
+        [self.navigationController pushViewController:showDetailsVC
+                                             animated:YES];
 }
 
 /*

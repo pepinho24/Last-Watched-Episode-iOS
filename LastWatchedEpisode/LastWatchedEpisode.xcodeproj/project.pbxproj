@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A60094B61C6606D90016CCC8 /* BrowseShowsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60094B51C6606D90016CCC8 /* BrowseShowsViewController.m */; };
+		A628668F1C6634C00009CA57 /* RemoteShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A628668E1C6634C00009CA57 /* RemoteShowDetailsViewController.m */; };
 		A6511E661C5F91BB0011BD40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6511E651C5F91BB0011BD40 /* main.m */; };
 		A6511E691C5F91BB0011BD40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6511E681C5F91BB0011BD40 /* AppDelegate.m */; };
 		A6511E6C1C5F91BB0011BD40 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6511E6B1C5F91BB0011BD40 /* HomePageViewController.m */; };
@@ -27,6 +28,8 @@
 /* Begin PBXFileReference section */
 		A60094B41C6606D90016CCC8 /* BrowseShowsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseShowsViewController.h; sourceTree = "<group>"; };
 		A60094B51C6606D90016CCC8 /* BrowseShowsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseShowsViewController.m; sourceTree = "<group>"; };
+		A628668D1C6634C00009CA57 /* RemoteShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteShowDetailsViewController.h; sourceTree = "<group>"; };
+		A628668E1C6634C00009CA57 /* RemoteShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteShowDetailsViewController.m; sourceTree = "<group>"; };
 		A6511E611C5F91BA0011BD40 /* LastWatchedEpisode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LastWatchedEpisode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6511E651C5F91BB0011BD40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A6511E671C5F91BB0011BD40 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -130,6 +133,8 @@
 				A6D64B211C65768700919A89 /* PopularShowsViewController.m */,
 				A60094B41C6606D90016CCC8 /* BrowseShowsViewController.h */,
 				A60094B51C6606D90016CCC8 /* BrowseShowsViewController.m */,
+				A628668D1C6634C00009CA57 /* RemoteShowDetailsViewController.h */,
+				A628668E1C6634C00009CA57 /* RemoteShowDetailsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 				A60094B61C6606D90016CCC8 /* BrowseShowsViewController.m in Sources */,
 				A6D64B191C65739000919A89 /* PMHttpData.m in Sources */,
 				A6511E691C5F91BB0011BD40 /* AppDelegate.m in Sources */,
+				A628668F1C6634C00009CA57 /* RemoteShowDetailsViewController.m in Sources */,
 				A6511E661C5F91BB0011BD40 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
