@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "RemoteShowDetailsViewController.h"
 #import "PMHttpData.h"
+#import <Toast/UIView+Toast.h>
 
 @interface RemoteShowDetailsViewController ()
 
@@ -29,7 +30,7 @@
     [super viewDidLoad];
     self.titleLabel.text = self.showTitle;
     // Do any additional setup after loading the view.
-    
+     [self.view makeToastActivity:CSToastPositionCenter];
     self.data = [[PMHttpData alloc] init];
     [self getShowFromUrl];
 }
@@ -62,6 +63,8 @@
             NSString *previousEpisodeURL =[[[result objectForKey:@"_links"] objectForKey:@"previousepisode"] objectForKey:@"href"];
             NSString *nextEpisodeURL = [[[result objectForKey:@"_links"] objectForKey:@"nextepisode"] objectForKey:@"href"];
             [self getEpisodeFromUrl:nextEpisodeURL :previousEpisodeURL];
+             [self.view hideToastActivity];
+            
         });
     }];
 }

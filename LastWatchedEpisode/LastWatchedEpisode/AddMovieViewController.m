@@ -12,6 +12,8 @@
 
 #import <CoreData/CoreData.h>
 
+#import <Toast/UIView+Toast.h>
+
 @interface AddMovieViewController ()
 
 @end
@@ -35,7 +37,7 @@
     NSString* descr =self.textFieldDescription.text;
     
     if ([title length] == 0) {
-        // show notification that title cannot be empty
+       [self.view makeToast:@"Title is required."];
         return;
     }
     

@@ -14,6 +14,8 @@
 
 #import "PMShow.h"
 
+#import <Toast/UIView+Toast.h>
+
 @interface PopularShowsViewController ()
 @property NSMutableArray *_shows;
 
@@ -28,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.labelTitle.text = @"Most Popular Shows";
+    [self.view makeToastActivity:CSToastPositionCenter];
     NSString *url = @"http://www.omdbapi.com/?s=The+flash";
     self.data = [[PMHttpData alloc] init];
     
@@ -45,7 +48,7 @@
         [self._shows addObjectsFromArray:shows];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            [self.view hideToastActivity];
             [self.mostPopularShowsTableView reloadData];
         });
     }];

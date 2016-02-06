@@ -13,6 +13,7 @@
 #import "PMHttpData.h"
 #import "RemoteShowDetailsViewController.h"
 #import "PMShow.h"
+#import <Toast/UIView+Toast.h>
 
 @interface BrowseShowsViewController ()
 
@@ -36,7 +37,8 @@
 -(void)getShowsFromUrl{
     NSString *url = [NSString stringWithFormat:@"http://www.omdbapi.com/?s=%@&page=%i&type=series", self.showName,self.pageCount];
     url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    
+    [self.view makeToastActivity:CSToastPositionCenter];
+
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
         NSArray *showsDicts = [result objectForKey:@"Search"];
         
@@ -48,7 +50,7 @@
         [self._shows addObjectsFromArray:shows];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+            [self.view hideToastActivity];
             [self.tableViewSearchResults reloadData];
         });
     }];
