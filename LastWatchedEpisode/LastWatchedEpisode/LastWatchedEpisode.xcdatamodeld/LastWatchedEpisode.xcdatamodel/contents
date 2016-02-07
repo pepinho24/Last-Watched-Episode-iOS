@@ -4,9 +4,18 @@
         <attribute name="plot" attributeType="String" minValueString="2" defaultValueString="No description available!" syncable="YES"/>
         <attribute name="title" attributeType="String" minValueString="2" maxValueString="50" syncable="YES"/>
     </entity>
+    <entity name="ShowModel" syncable="YES">
+        <attribute name="lastWatchedEpisodeNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastWatchedEpisodeSeason" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scheduleAirDays" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scheduleAirTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Weekday" syncable="YES"/>
     <elements>
-        <element name="Weekday" positionX="-63" positionY="-18" width="128" height="45"/>
         <element name="Show" positionX="-54" positionY="-9" width="128" height="75"/>
+        <element name="Weekday" positionX="-63" positionY="-18" width="128" height="45"/>
+        <element name="ShowModel" positionX="-45" positionY="9" width="128" height="135"/>
     </elements>
 </model>

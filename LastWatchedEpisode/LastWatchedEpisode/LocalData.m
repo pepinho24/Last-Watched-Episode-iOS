@@ -32,18 +32,23 @@
 }
 
 -(NSMutableArray *) loadShows {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Show"];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"ShowModel"];
     NSMutableArray *showsArray = [NSMutableArray array];
     
     NSError *error;
     
     NSArray *showsEntities = [self.managedContext executeFetchRequest:fetchRequest
-                                                                  error:&error];
+                                                                error:&error];
     
     for(int i = 0; i < showsEntities.count; i ++) {
-        NSManagedObject *courseEntity = showsEntities[i];
-        PMShow *show =[PMShow showWithTitle:[courseEntity valueForKey:@"title"]
-                            andDescription:[courseEntity valueForKey:@"plot"]];
+        NSManagedObject *showEntity = showsEntities[i];
+        PMShowModel *show =[PMShowModel showWithTitle:[showEntity valueForKey:@"title"]
+                                              summary:[showEntity valueForKey:@"summary"]
+                             lastWatchedEpisodeNumber:[showEntity valueForKey:@"lastWatchedEpisodeNumber"]
+                             lastWatchedEpisodeSeason:[showEntity valueForKey:@"lastWatchedEpisodeSeason"]
+                                      scheduleAirTime:[showEntity valueForKey:@"scheduleAirTime"]
+                                   andScheduleAirDays:[showEntity valueForKey:@"scheduleAirDays"]];
+        
         [showsArray addObject: show];
     }
     
@@ -53,21 +58,27 @@
     return [NSMutableArray arrayWithArray:self._shows];
 }
 
--(void)addShow:(PMShow *)show {
+-(void)addShow:(PMShowModel *)show {
     [self._shows addObject: show];
     
+    NSString* title = show.title;
+    NSString* summary = show.summary;
+    NSString* lastWatchedEpisodeNumber = show.lastWatchedEpisodeNumber;
+    NSString* lastWatchedEpisodeSeason = show.lastWatchedEpisodeSeason;
+    NSString* scheduleAirTime = show.scheduleAirTime;
+    NSString* scheduleAirDays = show.scheduleAirDays;
     
-    NSString* title =show.title;
-    NSString* descr =show.description;
-    // check if fields text is null or empty
-    
-    NSEntityDescription *showEntity = [NSEntityDescription entityForName:@"Show" inManagedObjectContext:self.managedContext];
+    NSEntityDescription *showEntity = [NSEntityDescription entityForName:@"ShowModel" inManagedObjectContext:self.managedContext];
     
     NSManagedObject *sh = [[NSManagedObject alloc] initWithEntity:showEntity insertIntoManagedObjectContext:self.managedContext];
     
     // K-V C key-value coding
     [sh setValue:title forKey:@"title"];
-    [sh setValue:descr forKey:@"plot"];
+    [sh setValue:summary forKey:@"summary"];
+    [sh setValue:lastWatchedEpisodeNumber forKey:@"lastWatchedEpisodeNumber"];
+    [sh setValue:lastWatchedEpisodeSeason forKey:@"lastWatchedEpisodeSeason"];
+    [sh setValue:scheduleAirTime forKey:@"scheduleAirTime"];
+    [sh setValue:scheduleAirDays forKey:@"scheduleAirDays"];
     
     NSError *mocSaveError = nil;
     
@@ -78,7 +89,7 @@
     }
 }
 
--(void)deleteShow:(PMShow *)show {
+-(void)deleteShow:(PMShowModel *)show {
     NSInteger index = [self._shows indexOfObject:show];
     [self._shows removeObjectAtIndex:index];
 }

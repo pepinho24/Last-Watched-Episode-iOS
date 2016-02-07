@@ -14,7 +14,15 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *textFieldTitle;
 
-@property (weak, nonatomic) IBOutlet UITextField *textFieldDescription;
+@property (weak, nonatomic) IBOutlet UITextField *textFieldSummary;
+
+@property (weak, nonatomic) IBOutlet UITextField *textFieldScheduleAirTime;
+
+@property (weak, nonatomic) IBOutlet UITextField *textFieldScheduleAirDays;
+
+@property (weak, nonatomic) IBOutlet UITextField *textFieldLastWatchedEpisodeNumber;
+
+@property (weak, nonatomic) IBOutlet UITextField *textFieldLastWatchedEpisodeSeason;
 
 @property (weak, nonatomic) PMShowModel *showModel;
 

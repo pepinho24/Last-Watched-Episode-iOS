@@ -18,20 +18,20 @@
 @property (strong, nonatomic) NSString *lastWatchedEpisodeNumber;
 @property (strong, nonatomic) NSString *lastWatchedEpisodeSeason;
 @property (strong, nonatomic) NSString *scheduleAirTime;
-@property (strong, nonatomic) NSArray *scheduleAirDays;
+@property (strong, nonatomic) NSString *scheduleAirDays;
 
 -(instancetype)initWithTitle: (NSString*) title
                      summary:(NSString*) summary
     lastWatchedEpisodeNumber:(NSString*) lastWatchedEpisodeNumber
     lastWatchedEpisodeSeason:(NSString*) lastWatchedEpisodeSeason
              scheduleAirTime:(NSString*) scheduleAirTime
-          andScheduleAirDays:(NSArray*) scheduleAirDays;
+          andScheduleAirDays:(NSString*) scheduleAirDays;
 
 +(PMShowModel*) showWithTitle: (NSString*) title
                       summary:(NSString*) summary
      lastWatchedEpisodeNumber:(NSString*) lastWatchedEpisodeNumber
      lastWatchedEpisodeSeason:(NSString*) lastWatchedEpisodeSeason
               scheduleAirTime:(NSString*) scheduleAirTime
-           andScheduleAirDays:(NSArray*) scheduleAirDays;
+           andScheduleAirDays:(NSString*) scheduleAirDays;
 
 @end

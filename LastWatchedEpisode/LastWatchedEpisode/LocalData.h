@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PMShow.h"
+#import "PMShowModel.h"
 
 @interface LocalData : NSObject
 
 -(NSMutableArray*) shows;
 
--(void) addShow: (PMShow *) show;
+-(void) addShow: (PMShowModel *) show;
 
--(void) deleteShow: (PMShow *) show;
+-(void) deleteShow: (PMShowModel *) show;
 
 -(NSMutableArray *) loadShows;
 @end

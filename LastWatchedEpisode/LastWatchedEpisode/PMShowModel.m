@@ -9,7 +9,7 @@
 #import "PMShowModel.h"
 
 @implementation PMShowModel
--(instancetype)initWithTitle:(NSString *)title summary:(NSString *)summary lastWatchedEpisodeNumber:(NSString *)lastWatchedEpisodeNumber lastWatchedEpisodeSeason:(NSString *)lastWatchedEpisodeSeason scheduleAirTime:(NSString *)scheduleAirTime andScheduleAirDays:(NSArray *)scheduleAirDays{
+-(instancetype)initWithTitle:(NSString *)title summary:(NSString *)summary lastWatchedEpisodeNumber:(NSString *)lastWatchedEpisodeNumber lastWatchedEpisodeSeason:(NSString *)lastWatchedEpisodeSeason scheduleAirTime:(NSString *)scheduleAirTime andScheduleAirDays:(NSString *)scheduleAirDays{
     if(self = [super init]) {
         self.title = title;
         self.summary = summary;
@@ -22,7 +22,7 @@
     return self;
 }
 
-+(PMShowModel *)showWithTitle:(NSString *)title summary:(NSString *)summary lastWatchedEpisodeNumber:(NSString *)lastWatchedEpisodeNumber lastWatchedEpisodeSeason:(NSString *)lastWatchedEpisodeSeason scheduleAirTime:(NSString *)scheduleAirTime andScheduleAirDays:(NSArray *)scheduleAirDays{
++(PMShowModel *)showWithTitle:(NSString *)title summary:(NSString *)summary lastWatchedEpisodeNumber:(NSString *)lastWatchedEpisodeNumber lastWatchedEpisodeSeason:(NSString *)lastWatchedEpisodeSeason scheduleAirTime:(NSString *)scheduleAirTime andScheduleAirDays:(NSString *)scheduleAirDays{
     return [[PMShowModel alloc] initWithTitle:title summary:summary lastWatchedEpisodeNumber:lastWatchedEpisodeNumber lastWatchedEpisodeSeason:lastWatchedEpisodeSeason scheduleAirTime:scheduleAirTime andScheduleAirDays:scheduleAirDays];
     
 }

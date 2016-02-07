@@ -34,30 +34,18 @@
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
   
     NSString* title =self.textFieldTitle.text;
-    NSString* descr =self.textFieldDescription.text;
+    NSString* summary =self.textFieldSummary.text;
+     NSString* lastWatchedEpisodeNumber =self.textFieldLastWatchedEpisodeNumber.text;
+     NSString* lastWatchedEpisodeSeason =self.textFieldLastWatchedEpisodeSeason.text;
+     NSString* scheduleAirTime =self.textFieldScheduleAirTime.text;
+     NSString* scheduleAirDays =self.textFieldScheduleAirDays.text;
     
     if ([title length] == 0) {
        [self.view makeToast:@"Title is required."];
         return;
     }
     
-    NSManagedObjectContext* managedContext = delegate.managedObjectContext;
-    NSEntityDescription *showEntity = [NSEntityDescription entityForName:@"Show" inManagedObjectContext:managedContext];
-        NSManagedObject *show = [[NSManagedObject alloc] initWithEntity:showEntity insertIntoManagedObjectContext:managedContext];
-    
-    // K-V C key-value coding 
-    [show setValue:title forKey:@"title"];
-    [show setValue:descr forKey:@"plot"];
-    
-     NSError *mocSaveError = nil;
-    
-    if (![managedContext save:&mocSaveError])
-    {
-        NSLog(@"Save did not complete successfully. Error: %@",
-              [mocSaveError localizedDescription]);
-    }
-    
-    PMShow *sh= [PMShow showWithTitle:self.textFieldTitle.text andDescription:self.textFieldDescription.text];
+    PMShowModel *sh= [PMShowModel showWithTitle:title summary:summary lastWatchedEpisodeNumber:lastWatchedEpisodeNumber lastWatchedEpisodeSeason:lastWatchedEpisodeSeason scheduleAirTime:scheduleAirTime andScheduleAirDays:scheduleAirDays];
       [delegate.data addShow:sh];
     
     [self.navigationController popViewControllerAnimated:YES];
