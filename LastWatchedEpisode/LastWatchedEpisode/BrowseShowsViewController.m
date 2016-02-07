@@ -40,12 +40,22 @@
     [self.view makeToastActivity:CSToastPositionCenter];
 
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
+        if (err) {
+            [self.view makeToast: [err localizedDescription]];
+        }
+        
         NSArray *showsDicts = [result objectForKey:@"Search"];
         
         NSMutableArray *shows = [NSMutableArray array];
         [showsDicts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [shows addObject:[[PMShow alloc] initWithDict: obj]];
         }];
+        
+        if (shows.count == 0) {
+            [self.view hideToastActivity];
+            [self.view makeToast:[result objectForKey:@"Error"]];
+            return;
+        }
         
         [self._shows addObjectsFromArray:shows];
         
@@ -112,13 +122,15 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath  {
-    
-        RemoteShowDetailsViewController *showDetailsVC = [self.storyboard instantiateViewControllerWithIdentifier: @"RemoteShowDetailsScene"];
+    [self.view makeToastActivity:CSToastPositionCenter];
+        RemoteShowDetailsViewController *showDetailsVC = [self.storyboard
+                                                          instantiateViewControllerWithIdentifier: @"RemoteShowDetailsScene"];
     
         showDetailsVC.showTitle = [self._shows[indexPath.row] title];
     
         [self.navigationController pushViewController:showDetailsVC
                                              animated:YES];
+    [self.view hideToastActivity];
 }
 
 /*

@@ -10,6 +10,8 @@
 		3B2E03A38F6E54DC22DB56AE /* libPods-LastWatchedEpisode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E99DD424645340C3339EEF9C /* libPods-LastWatchedEpisode.a */; };
 		A60094B61C6606D90016CCC8 /* BrowseShowsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60094B51C6606D90016CCC8 /* BrowseShowsViewController.m */; };
 		A628668F1C6634C00009CA57 /* RemoteShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A628668E1C6634C00009CA57 /* RemoteShowDetailsViewController.m */; };
+		A62866921C66989D0009CA57 /* CheckInternet.m in Sources */ = {isa = PBXBuildFile; fileRef = A62866911C66989D0009CA57 /* CheckInternet.m */; };
+		A62866951C669A670009CA57 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A62866941C669A670009CA57 /* Reachability.m */; };
 		A6511E661C5F91BB0011BD40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6511E651C5F91BB0011BD40 /* main.m */; };
 		A6511E691C5F91BB0011BD40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6511E681C5F91BB0011BD40 /* AppDelegate.m */; };
 		A6511E6C1C5F91BB0011BD40 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6511E6B1C5F91BB0011BD40 /* HomePageViewController.m */; };
@@ -32,6 +34,10 @@
 		A60094B51C6606D90016CCC8 /* BrowseShowsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseShowsViewController.m; sourceTree = "<group>"; };
 		A628668D1C6634C00009CA57 /* RemoteShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteShowDetailsViewController.h; sourceTree = "<group>"; };
 		A628668E1C6634C00009CA57 /* RemoteShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteShowDetailsViewController.m; sourceTree = "<group>"; };
+		A62866901C66989D0009CA57 /* CheckInternet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInternet.h; sourceTree = "<group>"; };
+		A62866911C66989D0009CA57 /* CheckInternet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInternet.m; sourceTree = "<group>"; };
+		A62866931C669A670009CA57 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		A62866941C669A670009CA57 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		A6511E611C5F91BA0011BD40 /* LastWatchedEpisode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LastWatchedEpisode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6511E651C5F91BB0011BD40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A6511E671C5F91BB0011BD40 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,6 +130,10 @@
 				A6511E781C5F91BB0011BD40 /* Info.plist */,
 				A6511E701C5F91BB0011BD40 /* LastWatchedEpisode.xcdatamodeld */,
 				A6511E641C5F91BB0011BD40 /* Supporting Files */,
+				A62866901C66989D0009CA57 /* CheckInternet.h */,
+				A62866911C66989D0009CA57 /* CheckInternet.m */,
+				A62866931C669A670009CA57 /* Reachability.h */,
+				A62866941C669A670009CA57 /* Reachability.m */,
 			);
 			path = LastWatchedEpisode;
 			sourceTree = "<group>";
@@ -316,6 +326,7 @@
 			files = (
 				A6A6AEE31C6280890020DB3F /* FavoriteShowsViewController.m in Sources */,
 				A6511E721C5F91BB0011BD40 /* LastWatchedEpisode.xcdatamodeld in Sources */,
+				A62866921C66989D0009CA57 /* CheckInternet.m in Sources */,
 				A6A6AEEA1C641E0F0020DB3F /* PMShow.m in Sources */,
 				A6D64B221C65768700919A89 /* PopularShowsViewController.m in Sources */,
 				A6A6AEED1C64C1D90020DB3F /* LocalData.m in Sources */,
@@ -323,6 +334,7 @@
 				A6A6AEE61C641C7B0020DB3F /* AddMovieViewController.m in Sources */,
 				A60094B61C6606D90016CCC8 /* BrowseShowsViewController.m in Sources */,
 				A6D64B191C65739000919A89 /* PMHttpData.m in Sources */,
+				A62866951C669A670009CA57 /* Reachability.m in Sources */,
 				A6511E691C5F91BB0011BD40 /* AppDelegate.m in Sources */,
 				A628668F1C6634C00009CA57 /* RemoteShowDetailsViewController.m in Sources */,
 				A6511E661C5F91BB0011BD40 /* main.m in Sources */,

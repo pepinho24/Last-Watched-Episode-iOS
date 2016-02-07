@@ -11,9 +11,9 @@
 #import "AppDelegate.h"
 
 #import "PMHttpData.h"
-
+#import "RemoteShowDetailsViewController.h"
 #import "PMShow.h"
-
+#import "CheckInternet.h"
 #import <Toast/UIView+Toast.h>
 
 @interface PopularShowsViewController ()
@@ -29,21 +29,50 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if ([CheckInternet isInternetConnectionAvailable])
+    {
+        [self.view makeToast:@"Has internet."];
+    }
+    else
+    {
+        // no internet
+        [self.view makeToast:@"Check your internet connection and try again."];
+    }
+    
+    // https://api-v2launch.trakt.tv/shows/popular
+    // trakt-api-key: 16d47c0248ab45d23f38d864f0a4d999a557b80058a76fe78e5b16e0a1f0e23e
+    // apiaryApiName: lastwatchedepisode
+    
     //self.labelTitle.text = @"Most Popular Shows";
     [self.view makeToastActivity:CSToastPositionCenter];
-    NSString *url = @"http://www.omdbapi.com/?s=The+flash";
+    NSString *url = @"https://api-v2launch.trakt.tv/shows/trending";
     self.data = [[PMHttpData alloc] init];
     
     self.mostPopularShowsTableView.delegate = self;
     self.mostPopularShowsTableView.dataSource = self;
     
-    [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
-        NSArray *showsDicts = [result objectForKey:@"Search"];
-        
+    NSMutableDictionary *headers = [NSMutableDictionary dictionary];
+    [headers setObject:@"16d47c0248ab45d23f38d864f0a4d999a557b80058a76fe78e5b16e0a1f0e23e"
+                forKey:@"trakt-api-key"];
+    [headers setObject:@"2"
+                forKey:@"trakt-api-version"];
+
+    
+    [self.data getFrom: url headers:headers withCompletionHandler: ^(NSDictionary * result, NSError * err) {
         NSMutableArray *shows = [NSMutableArray array];
-        [showsDicts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [shows addObject:[[PMShow alloc] initWithDict: obj]];
-        }];
+        
+        for(id key in result){
+            [shows addObject:[key objectForKey:@"show"]];
+        }
+        
+        
+       // NSArray *showsDicts = [result objectForKey:@"show"];
+        
+        //NSMutableArray *shows = [NSMutableArray array];
+//        [showsDicts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            [shows addObject:[[PMShow alloc] initWithDict: obj]];
+//        }];
         self._shows = [NSMutableArray array];
         [self._shows addObjectsFromArray:shows];
         
@@ -79,20 +108,22 @@
                                       reuseIdentifier:@"Cell"];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat: @"%@", [self._shows[indexPath.row] title]];
+    cell.textLabel.text = [NSString stringWithFormat: @"%@", [self._shows[indexPath.row] objectForKey:@"title"]];
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath  {
     
-    //    DMCourseDetailsViewController *courseDetailsVC = [self.storyboard instantiateViewControllerWithIdentifier: @"CourseDetailsScene"];
-    //
-    //    courseDetailsVC.courseId = [self.courses[indexPath.row] courseId];
-    //    courseDetailsVC.courseTitle = [self.courses[indexPath.row] title];
-    //
-    //    [self.navigationController pushViewController:courseDetailsVC
-    //                                         animated:YES];
+    [self.view makeToastActivity:CSToastPositionCenter];
+    RemoteShowDetailsViewController *showDetailsVC = [self.storyboard
+                                                      instantiateViewControllerWithIdentifier: @"RemoteShowDetailsScene"];
+    
+    showDetailsVC.showTitle = [self._shows[indexPath.row] objectForKey:@"title"];
+    
+    [self.navigationController pushViewController:showDetailsVC
+                                         animated:YES];
+    [self.view hideToastActivity];
 }
 /*
  #pragma mark - Navigation

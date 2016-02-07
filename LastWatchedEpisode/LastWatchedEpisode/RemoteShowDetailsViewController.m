@@ -33,6 +33,18 @@
      [self.view makeToastActivity:CSToastPositionCenter];
     self.data = [[PMHttpData alloc] init];
     [self getShowFromUrl];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    tapGesture.numberOfTapsRequired = 2;
+    [self.textViewSummary addGestureRecognizer:tapGesture];
+    //[tapGesture release];
+    
+}
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        [self.view makeToast:self.textViewSummary.text duration:20 position:CSToastPositionCenter];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,7 +86,10 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            NSString *episode = [NSString stringWithFormat:@"Next ep: %@", [result objectForKey:@"name"]];
+            NSString *episode = [NSString stringWithFormat:@"Next ep:S%@E%@ - %@",
+                                 [result objectForKey:@"season"],
+                                 [result objectForKey:@"number"],
+                                 [result objectForKey:@"name"]];
             if ([episode  isEqual: @"(null)"]) {
                 episode = @"N/A";
             }
@@ -86,7 +101,10 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            NSString *episode = [NSString stringWithFormat:@"Last ep: %@", [result objectForKey:@"name"]];
+            NSString *episode = [NSString stringWithFormat:@"Last ep:S%@E%@ - %@",
+                                 [result objectForKey:@"season"],
+                                 [result objectForKey:@"number"],
+                                 [result objectForKey:@"name"]];
             if ([episode  isEqual: @"(null)"]) {
                 episode = @"N/A";
             }
