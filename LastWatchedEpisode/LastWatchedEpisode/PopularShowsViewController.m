@@ -27,8 +27,38 @@
 
 @implementation PopularShowsViewController
 
+- (void)leftToRightSwipeDidFire {
+    UITabBar *tabBar = self.tabBarController.tabBar;
+    NSInteger index = [tabBar.items indexOfObject:tabBar.selectedItem];
+    if (index > 0) {
+        self.tabBarController.selectedIndex = index - 1;
+    } else {
+        return;
+    }
+}
+
+- (void)rightToLeftSwipeDidFire {
+    UITabBar *tabBar = self.tabBarController.tabBar;
+    NSInteger index = [tabBar.items indexOfObject:tabBar.selectedItem];
+    if (index < tabBar.items.count - 1) {
+        self.tabBarController.selectedIndex = index + 1;
+    } else {
+        return;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UISwipeGestureRecognizer *leftToRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftToRightSwipeDidFire)];
+    leftToRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:leftToRightGesture];
+    
+    UISwipeGestureRecognizer *rightToLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightToLeftSwipeDidFire)];
+    rightToLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:rightToLeftGesture];
+    
+    
     
     if ([CheckInternet isInternetConnectionAvailable])
     {
