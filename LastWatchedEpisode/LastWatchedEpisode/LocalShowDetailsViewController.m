@@ -20,10 +20,78 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelPreviousEpisode;
 @property (weak, nonatomic) IBOutlet UILabel *labelNextEpisode;
 @property (weak, nonatomic) IBOutlet UILabel *labelLastWatchedEpisode;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewPoster;
+
+- (IBAction)watchEpisodeBtnClick:(id)sender;
+
 @end
 
 @implementation LocalShowDetailsViewController
+- (void)alertTextFieldDidChange:(UITextField *)sender
+{
+    UIAlertController *alertController = (UIAlertController *)self.presentedViewController;
+    if (alertController)
+    {
+        UITextField *season = alertController.textFields.firstObject;
+        UITextField *episode = alertController.textFields.lastObject;
+        UIAlertAction *okAction = alertController.actions.lastObject;
+        okAction.enabled = season.text.length > 0 && episode.text.length > 0;
+    }
+}
+- (IBAction)watchEpisodeBtnClick:(id)sender {
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Watch episode"
+                                          message:@"Enter new episode"
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField)
+     {
+         //textField.placeholder = NSLocalizedString(@"SeasonPlaceholder", @"Season");
+         textField.text = self.showModel.lastWatchedEpisodeSeason;
+         [textField addTarget:self
+                       action:@selector(alertTextFieldDidChange:)
+             forControlEvents:UIControlEventEditingChanged];
+     }];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField)
+     {
+         //textField.placeholder = NSLocalizedString(@"EpisodePlaceholder", @"Episode");
+          textField.text = self.showModel.lastWatchedEpisodeNumber;
+         [textField addTarget:self
+                       action:@selector(alertTextFieldDidChange:)
+             forControlEvents:UIControlEventEditingChanged];
+     }];
+    
+    UIAlertAction *okAction = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   NSString *season = alertController.textFields.firstObject.text;
+                                   NSString *episode = alertController.textFields.lastObject.text;
+                                   
+                                   self.showModel.lastWatchedEpisodeSeason = season;
+                                   self.showModel.lastWatchedEpisodeNumber = episode;
+                                   
+                               }];
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"Cancel action");
+                                   }];
+   
+    okAction.enabled = NO;
+    
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+
+}
+
 -(void)getShowFromLocalDatabase{
    
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
