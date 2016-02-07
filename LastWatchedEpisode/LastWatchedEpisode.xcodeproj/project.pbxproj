@@ -33,6 +33,8 @@
 		A6F953321C67693500810690 /* LocalShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F953311C67693500810690 /* LocalShowDetailsViewController.m */; };
 		A6F953381C67E35700810690 /* FavoriteShowsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F953361C67E35700810690 /* FavoriteShowsTableViewCell.m */; };
 		A6F953391C67E35700810690 /* FavoriteShowsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6F953371C67E35700810690 /* FavoriteShowsTableViewCell.xib */; };
+		A6F9533D1C67EEC500810690 /* TopShowsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F9533B1C67EEC500810690 /* TopShowsTableViewCell.m */; };
+		A6F9533E1C67EEC500810690 /* TopShowsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6F9533C1C67EEC500810690 /* TopShowsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +85,9 @@
 		A6F953351C67E35700810690 /* FavoriteShowsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteShowsTableViewCell.h; sourceTree = "<group>"; };
 		A6F953361C67E35700810690 /* FavoriteShowsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteShowsTableViewCell.m; sourceTree = "<group>"; };
 		A6F953371C67E35700810690 /* FavoriteShowsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteShowsTableViewCell.xib; sourceTree = "<group>"; };
+		A6F9533A1C67EEC500810690 /* TopShowsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopShowsTableViewCell.h; sourceTree = "<group>"; };
+		A6F9533B1C67EEC500810690 /* TopShowsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopShowsTableViewCell.m; sourceTree = "<group>"; };
+		A6F9533C1C67EEC500810690 /* TopShowsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopShowsTableViewCell.xib; sourceTree = "<group>"; };
 		AE761C722F52B627E9D1BA8B /* Pods-LastWatchedEpisode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LastWatchedEpisode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LastWatchedEpisode/Pods-LastWatchedEpisode.debug.xcconfig"; sourceTree = "<group>"; };
 		E99DD424645340C3339EEF9C /* libPods-LastWatchedEpisode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LastWatchedEpisode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -246,6 +251,9 @@
 				A6F953351C67E35700810690 /* FavoriteShowsTableViewCell.h */,
 				A6F953361C67E35700810690 /* FavoriteShowsTableViewCell.m */,
 				A6F953371C67E35700810690 /* FavoriteShowsTableViewCell.xib */,
+				A6F9533A1C67EEC500810690 /* TopShowsTableViewCell.h */,
+				A6F9533B1C67EEC500810690 /* TopShowsTableViewCell.m */,
+				A6F9533C1C67EEC500810690 /* TopShowsTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -311,6 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6F9533E1C67EEC500810690 /* TopShowsTableViewCell.xib in Resources */,
 				A6F953391C67E35700810690 /* FavoriteShowsTableViewCell.xib in Resources */,
 				A6511E771C5F91BB0011BD40 /* LaunchScreen.storyboard in Resources */,
 				A6511E741C5F91BB0011BD40 /* Assets.xcassets in Resources */,
@@ -385,6 +394,7 @@
 				A6F953381C67E35700810690 /* FavoriteShowsTableViewCell.m in Sources */,
 				A6511E6C1C5F91BB0011BD40 /* HomePageViewController.m in Sources */,
 				A6F953291C6739D200810690 /* PMShowModel.m in Sources */,
+				A6F9533D1C67EEC500810690 /* TopShowsTableViewCell.m in Sources */,
 				A6A6AEE61C641C7B0020DB3F /* AddMovieViewController.m in Sources */,
 				A6F953261C66DB2700810690 /* TrendingShowsViewController.m in Sources */,
 				A60094B61C6606D90016CCC8 /* BrowseShowsViewController.m in Sources */,

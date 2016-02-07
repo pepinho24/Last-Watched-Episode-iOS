@@ -13,6 +13,8 @@
 #import "RemoteShowDetailsViewController.h"
 #import "PMShow.h"
 #import "CheckInternet.h"
+#import "TopShowsTableViewCell.h"
+
 #import <Toast/UIView+Toast.h>
 
 @interface TrendingShowsViewController ()
@@ -57,6 +59,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UINib* nib = [UINib nibWithNibName:@"TopShowsTableViewCell"
+                                bundle:nil];
+    
+    [self.trendingShowsTableView registerNib:nib
+                      forCellReuseIdentifier:@"TopShowsTableViewCell"];
+    
     
     
     UISwipeGestureRecognizer *leftToRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftToRightSwipeDidFire)];
@@ -118,16 +127,40 @@
     return self.trendingShows.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+     static NSString *cellIdentifier = @"TopShowsTableViewCell";
+    TopShowsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:@"Cell"];
+        cell = [[TopShowsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:cellIdentifier];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat: @"%@", [self.trendingShows[indexPath.row] objectForKey:@"title"]];
+    
+    UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
+    topLineView.backgroundColor = [UIColor grayColor];
+    [cell.contentView addSubview:topLineView];
+    
+    NSString *showTitle =[self.trendingShows[indexPath.row] objectForKey:@"title"];
+    
+    NSString *url = [NSString stringWithFormat:@"http://api.tvmaze.com/singlesearch/shows?q=%@", showTitle];
+    url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    
+    [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.posterImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"image"] objectForKey:@"medium"]]]];
+            cell.posterImageView.contentMode = UIViewContentModeScaleAspectFit;
+            
+        });
+    }];
+    
+    cell.titleLabel.text = showTitle;
     
     return cell;
 }
