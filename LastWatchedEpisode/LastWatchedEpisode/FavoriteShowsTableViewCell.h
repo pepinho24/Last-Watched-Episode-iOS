@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PopularShowsTableViewCell : UITableViewCell
+@interface FavoriteShowsTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastWatchedLabel;
 

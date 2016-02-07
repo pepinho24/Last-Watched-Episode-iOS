@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 #import "LocalData.h"
 #import "PMShow.h"
-#import "PopularShowsTableViewCell.h"
+#import "FavoriteShowsTableViewCell.h"
 
 #import <Toast/UIView+Toast.h>
 //#import "PhoneCell.h"
@@ -37,11 +37,11 @@
     self.navigationItem.rightBarButtonItem = addBarButton;
     
     
-    UINib* nib = [UINib nibWithNibName:@"PopularShowsTableViewCell"
+    UINib* nib = [UINib nibWithNibName:@"FavoriteShowsTableViewCell"
                                 bundle:nil];
     
     [self.tableViewFavoriteShows registerNib:nib
-         forCellReuseIdentifier:@"PopularShowsTableViewCell"];
+         forCellReuseIdentifier:@"FavoriteShowsTableViewCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,12 +99,12 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-        static NSString *cellIdentifier = @"PopularShowsTableViewCell";
+        static NSString *cellIdentifier = @"FavoriteShowsTableViewCell";
     
-    PopularShowsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    FavoriteShowsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
     if(cell == nil) {
-        cell = [[PopularShowsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+        cell = [[FavoriteShowsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:cellIdentifier];
         
     }

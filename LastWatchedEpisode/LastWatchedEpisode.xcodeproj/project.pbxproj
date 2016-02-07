@@ -31,8 +31,8 @@
 		A6F9532C1C673B4000810690 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F9532B1C673B4000810690 /* Episode.m */; };
 		A6F9532F1C673BE000810690 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F9532E1C673BE000810690 /* Schedule.m */; };
 		A6F953321C67693500810690 /* LocalShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F953311C67693500810690 /* LocalShowDetailsViewController.m */; };
-		A6F953381C67E35700810690 /* PopularShowsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F953361C67E35700810690 /* PopularShowsTableViewCell.m */; };
-		A6F953391C67E35700810690 /* PopularShowsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6F953371C67E35700810690 /* PopularShowsTableViewCell.xib */; };
+		A6F953381C67E35700810690 /* FavoriteShowsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F953361C67E35700810690 /* FavoriteShowsTableViewCell.m */; };
+		A6F953391C67E35700810690 /* FavoriteShowsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6F953371C67E35700810690 /* FavoriteShowsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,9 +80,9 @@
 		A6F9532E1C673BE000810690 /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
 		A6F953301C67693500810690 /* LocalShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalShowDetailsViewController.h; sourceTree = "<group>"; };
 		A6F953311C67693500810690 /* LocalShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalShowDetailsViewController.m; sourceTree = "<group>"; };
-		A6F953351C67E35700810690 /* PopularShowsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularShowsTableViewCell.h; sourceTree = "<group>"; };
-		A6F953361C67E35700810690 /* PopularShowsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularShowsTableViewCell.m; sourceTree = "<group>"; };
-		A6F953371C67E35700810690 /* PopularShowsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularShowsTableViewCell.xib; sourceTree = "<group>"; };
+		A6F953351C67E35700810690 /* FavoriteShowsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteShowsTableViewCell.h; sourceTree = "<group>"; };
+		A6F953361C67E35700810690 /* FavoriteShowsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteShowsTableViewCell.m; sourceTree = "<group>"; };
+		A6F953371C67E35700810690 /* FavoriteShowsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteShowsTableViewCell.xib; sourceTree = "<group>"; };
 		AE761C722F52B627E9D1BA8B /* Pods-LastWatchedEpisode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LastWatchedEpisode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LastWatchedEpisode/Pods-LastWatchedEpisode.debug.xcconfig"; sourceTree = "<group>"; };
 		E99DD424645340C3339EEF9C /* libPods-LastWatchedEpisode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LastWatchedEpisode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -243,9 +243,9 @@
 		A6F953341C67E32400810690 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A6F953351C67E35700810690 /* PopularShowsTableViewCell.h */,
-				A6F953361C67E35700810690 /* PopularShowsTableViewCell.m */,
-				A6F953371C67E35700810690 /* PopularShowsTableViewCell.xib */,
+				A6F953351C67E35700810690 /* FavoriteShowsTableViewCell.h */,
+				A6F953361C67E35700810690 /* FavoriteShowsTableViewCell.m */,
+				A6F953371C67E35700810690 /* FavoriteShowsTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -311,7 +311,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6F953391C67E35700810690 /* PopularShowsTableViewCell.xib in Resources */,
+				A6F953391C67E35700810690 /* FavoriteShowsTableViewCell.xib in Resources */,
 				A6511E771C5F91BB0011BD40 /* LaunchScreen.storyboard in Resources */,
 				A6511E741C5F91BB0011BD40 /* Assets.xcassets in Resources */,
 				A6511E6F1C5F91BB0011BD40 /* Main.storyboard in Resources */,
@@ -382,7 +382,7 @@
 				A6A6AEEA1C641E0F0020DB3F /* PMShow.m in Sources */,
 				A6D64B221C65768700919A89 /* PopularShowsViewController.m in Sources */,
 				A6A6AEED1C64C1D90020DB3F /* LocalData.m in Sources */,
-				A6F953381C67E35700810690 /* PopularShowsTableViewCell.m in Sources */,
+				A6F953381C67E35700810690 /* FavoriteShowsTableViewCell.m in Sources */,
 				A6511E6C1C5F91BB0011BD40 /* HomePageViewController.m in Sources */,
 				A6F953291C6739D200810690 /* PMShowModel.m in Sources */,
 				A6A6AEE61C641C7B0020DB3F /* AddMovieViewController.m in Sources */,

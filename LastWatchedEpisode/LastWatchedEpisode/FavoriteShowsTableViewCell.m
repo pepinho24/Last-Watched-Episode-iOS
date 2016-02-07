@@ -6,9 +6,9 @@
 //  Copyright © 2016 PeterMilchev. All rights reserved.
 //
 
-#import "PopularShowsTableViewCell.h"
+#import "FavoriteShowsTableViewCell.h"
 
-@implementation PopularShowsTableViewCell
+@implementation FavoriteShowsTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
