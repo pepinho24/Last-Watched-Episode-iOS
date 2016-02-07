@@ -1,93 +1,82 @@
 //
-//  RemoteShowDetailsViewController.m
+//  LocalShowDetailsViewController.m
 //  LastWatchedEpisode
 //
-//  Created by VM on 2/6/16.
+//  Created by VM on 2/7/16.
 //  Copyright © 2016 PeterMilchev. All rights reserved.
 //
 
+#import "LocalShowDetailsViewController.h"
 #import "AppDelegate.h"
-#import "RemoteShowDetailsViewController.h"
 #import "PMHttpData.h"
-#import "AddMovieViewController.h"
 #import "PMShowModel.h"
 #import <Toast/UIView+Toast.h>
-
-@interface RemoteShowDetailsViewController ()
+@interface LocalShowDetailsViewController ()
+@property (strong, nonatomic) PMHttpData *data;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *textViewSummary;
 @property (weak, nonatomic) IBOutlet UILabel *labelSchedule;
 @property (weak, nonatomic) IBOutlet UILabel *labelPreviousEpisode;
 @property (weak, nonatomic) IBOutlet UILabel *labelNextEpisode;
+@property (weak, nonatomic) IBOutlet UILabel *labelLastWatchedEpisode;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewPoster;
-
-- (IBAction)addToFavoritesBtnClick:(id)sender;
-
-@property (strong, nonatomic) PMHttpData *data;
-
 @end
 
-@implementation RemoteShowDetailsViewController
-
-
-- (IBAction)addToFavoritesBtnClick:(id)sender {
-    AddMovieViewController *showDetailsVC = [self.storyboard
-                                                      instantiateViewControllerWithIdentifier: @"addMovieScene"];
+@implementation LocalShowDetailsViewController
+-(void)getShowFromLocalDatabase{
+   
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
-    showDetailsVC.showModel = self.showModel;
+    NSManagedObjectContext *managedContext =appDelegate.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"ShowModel"];
     
-    [self.navigationController pushViewController:showDetailsVC
-                                         animated:YES];
+    NSArray *showEntities = [managedContext executeFetchRequest:request error:nil];
+    
+    for(int i = 0; i < showEntities.count; i ++) {
+        NSManagedObject *showEntity = showEntities[i];
+        
+        PMShowModel *show = [PMShowModel showWithTitle:[showEntity valueForKey:@"title"]
+                                               summary:[showEntity valueForKey:@"summary"]
+                              lastWatchedEpisodeNumber:[showEntity valueForKey:@"lastWatchedEpisodeNumber"]
+                              lastWatchedEpisodeSeason:[showEntity valueForKey:@"lastWatchedEpisodeSeason"]
+                                       scheduleAirTime:[showEntity valueForKey:@"scheduleAirTime"]
+                                    andScheduleAirDays:[showEntity valueForKey:@"scheduleAirDays"] ];
+        
+        if (self.showTitle == show.title) {
+            self.showModel = show;
+            return;
+        }
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.titleLabel.text = self.showTitle;
-    // Do any additional setup after loading the view.
-     [self.view makeToastActivity:CSToastPositionCenter];
-    self.data = [[PMHttpData alloc] init];
+    
+    
+    [self.view makeToastActivity:CSToastPositionCenter];
+    
     self.showModel = [PMShowModel showWithTitle:@"N/A"
                                         summary:@"N/A"
                        lastWatchedEpisodeNumber:@"N/A"
                        lastWatchedEpisodeSeason:@"N/A"
                                 scheduleAirTime:@"N/A"
                              andScheduleAirDays:@"N/A"];
+    
+    [self getShowFromLocalDatabase];
+    
+    self.titleLabel.text = self.showTitle;
+    self.labelLastWatchedEpisode.text = [NSString stringWithFormat:@"You last watched s%@e%@",
+                                             self.showModel.lastWatchedEpisodeSeason,
+                                             self.showModel.lastWatchedEpisodeNumber];
+    
+    self.data = [[PMHttpData alloc] init];   
     [self getShowFromUrl];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     tapGesture.numberOfTapsRequired = 2;
     [self.textViewSummary addGestureRecognizer:tapGesture];
-    //[tapGesture release];
     
-}
-
-- (void)handleTapGesture:(UITapGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateRecognized) {
-        UIAlertController * alert= [UIAlertController
-                                      alertControllerWithTitle:self.titleLabel.text
-                                      message:self.textViewSummary.text
-                                      preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* okayButton = [UIAlertAction
-                                    actionWithTitle:@"Okay"
-                                    style:UIAlertActionStyleDefault
-                                    handler:^(UIAlertAction * action)
-                                    {
-                                        //Handel your yes please button action here
-                                        
-                                        
-                                    }];
-        
-        [alert addAction:okayButton];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)getShowFromUrl{
@@ -105,7 +94,7 @@
             
             // NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:ImageURL]]
             self.imageViewPoster.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"image"] objectForKey:@"medium"]]]];
-             self.imageViewPoster.contentMode = UIViewContentModeCenter;
+            self.imageViewPoster.contentMode = UIViewContentModeCenter;
             
             NSString *time = [[result objectForKey:@"schedule"] objectForKey:@"time"];
             NSString *days = [[[result objectForKey:@"schedule"] objectForKey:@"days"] componentsJoinedByString:@", "];
@@ -119,7 +108,7 @@
             NSString *previousEpisodeURL =[[[result objectForKey:@"_links"] objectForKey:@"previousepisode"] objectForKey:@"href"];
             NSString *nextEpisodeURL = [[[result objectForKey:@"_links"] objectForKey:@"nextepisode"] objectForKey:@"href"];
             [self getEpisodeFromUrl:nextEpisodeURL :previousEpisodeURL];
-             [self.view hideToastActivity];
+            [self.view hideToastActivity];
             
         });
     }];
@@ -156,6 +145,37 @@
             self.labelPreviousEpisode.text = episode;
         });
     }];
+}
+
+
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        UIAlertController * alert= [UIAlertController
+                                    alertControllerWithTitle:self.titleLabel.text
+                                    message:self.textViewSummary.text
+                                    preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* okayButton = [UIAlertAction
+                                     actionWithTitle:@"Okay"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         //Handel your yes please button action here
+                                         
+                                         
+                                     }];
+        
+        [alert addAction:okayButton];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 /*

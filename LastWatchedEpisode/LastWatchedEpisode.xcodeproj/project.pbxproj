@@ -30,6 +30,7 @@
 		A6F953291C6739D200810690 /* PMShowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F953281C6739D200810690 /* PMShowModel.m */; };
 		A6F9532C1C673B4000810690 /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F9532B1C673B4000810690 /* Episode.m */; };
 		A6F9532F1C673BE000810690 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F9532E1C673BE000810690 /* Schedule.m */; };
+		A6F953321C67693500810690 /* LocalShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F953311C67693500810690 /* LocalShowDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,8 @@
 		A6F9532B1C673B4000810690 /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
 		A6F9532D1C673BE000810690 /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
 		A6F9532E1C673BE000810690 /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
+		A6F953301C67693500810690 /* LocalShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalShowDetailsViewController.h; sourceTree = "<group>"; };
+		A6F953311C67693500810690 /* LocalShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalShowDetailsViewController.m; sourceTree = "<group>"; };
 		AE761C722F52B627E9D1BA8B /* Pods-LastWatchedEpisode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LastWatchedEpisode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LastWatchedEpisode/Pods-LastWatchedEpisode.debug.xcconfig"; sourceTree = "<group>"; };
 		E99DD424645340C3339EEF9C /* libPods-LastWatchedEpisode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LastWatchedEpisode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -183,6 +186,8 @@
 				A628668E1C6634C00009CA57 /* RemoteShowDetailsViewController.m */,
 				A6F953241C66DB2700810690 /* TrendingShowsViewController.h */,
 				A6F953251C66DB2700810690 /* TrendingShowsViewController.m */,
+				A6F953301C67693500810690 /* LocalShowDetailsViewController.h */,
+				A6F953311C67693500810690 /* LocalShowDetailsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				A6A6AEE31C6280890020DB3F /* FavoriteShowsViewController.m in Sources */,
 				A6511E721C5F91BB0011BD40 /* LastWatchedEpisode.xcdatamodeld in Sources */,
 				A6F9532C1C673B4000810690 /* Episode.m in Sources */,
+				A6F953321C67693500810690 /* LocalShowDetailsViewController.m in Sources */,
 				A62866921C66989D0009CA57 /* CheckInternet.m in Sources */,
 				A6A6AEEA1C641E0F0020DB3F /* PMShow.m in Sources */,
 				A6D64B221C65768700919A89 /* PopularShowsViewController.m in Sources */,

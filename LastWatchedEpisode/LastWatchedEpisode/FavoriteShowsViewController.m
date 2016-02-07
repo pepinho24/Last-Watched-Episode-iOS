@@ -8,6 +8,7 @@
 
 #import "FavoriteShowsViewController.h"
 #import "AddMovieViewController.h"
+#import "LocalShowDetailsViewController.h"
 
 //#import "PhoneDetailsViewController.h"
 
@@ -15,6 +16,7 @@
 #import "LocalData.h"
 #import "PMShow.h"
 
+#import <Toast/UIView+Toast.h>
 //#import "PhoneCell.h"
 
 @interface FavoriteShowsViewController ()
@@ -44,32 +46,39 @@
     [self.storyboard instantiateViewControllerWithIdentifier:storyBoardId];
     [self.navigationController pushViewController:addMovieVC animated:YES];
 }
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
 //    PMShow *sh = [PMShow showWithTitle: @"Gotham"
 //                        andDescription: @"Batman's city"];
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
     //self.shows = [NSArray arrayWithObjects: sh, nil];
-    NSManagedObjectContext *managedContext =delegate.managedObjectContext;
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Show"];
+    NSManagedObjectContext *managedContext =appDelegate.managedObjectContext;
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"ShowModel"];
     
     NSArray *showEntities = [managedContext executeFetchRequest:request error:nil];
     
     for(int i = 0; i < showEntities.count; i ++) {
         NSManagedObject *showEntity = showEntities[i];
         
-        PMShow *show = [PMShow showWithTitle:[showEntity valueForKey:@"title"]
-                              andDescription:[showEntity valueForKey:@"plot"]];
+        PMShowModel *show = [PMShowModel showWithTitle:[showEntity valueForKey:@"title"]
+                                                summary:[showEntity valueForKey:@"summary"]
+                               lastWatchedEpisodeNumber:[showEntity valueForKey:@"lastWatchedEpisodeNumber"]
+                               lastWatchedEpisodeSeason:[showEntity valueForKey:@"lastWatchedEpisodeSeason"]
+                                        scheduleAirTime:[showEntity valueForKey:@"scheduleAirTime"]
+                                     andScheduleAirDays:[showEntity valueForKey:@"scheduleAirDays"] ];
+                             
         
-        [[delegate.data shows] addObject: show];
+        [[appDelegate.data shows] addObject: show];
     }
     
+    self.tableViewFavoriteShows.delegate = self;
     self.tableViewFavoriteShows.dataSource = self;
     
-    self.shows = [delegate.data shows];
+    self.shows = [appDelegate.data shows];
     
     [self.tableViewFavoriteShows reloadData];
 }
@@ -83,7 +92,7 @@
     
     //    UITableViewCell *cell = [[UITableViewCell alloc] init];
     
-    static NSString *cellIdentifier = @"ShowTableViewCell";
+    static NSString *cellIdentifier = @"FavoritesShowTableViewCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil) {
@@ -94,6 +103,19 @@
     cell.textLabel.text = [NSString stringWithFormat: @"%@", [self.shows[indexPath.row] title]];
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.view makeToastActivity:CSToastPositionCenter];
+    LocalShowDetailsViewController *showDetailsVC = [self.storyboard
+                                                     instantiateViewControllerWithIdentifier: @"LocalShowDetailsScene"];
+    
+    showDetailsVC.showTitle = [self.shows[indexPath.row] title];
+    
+    [self.navigationController pushViewController:showDetailsVC
+                                         animated:YES];
+    [self.view hideToastActivity];
+
 }
 
 /*

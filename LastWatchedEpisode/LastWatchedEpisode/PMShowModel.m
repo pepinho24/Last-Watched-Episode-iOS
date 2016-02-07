@@ -9,6 +9,14 @@
 #import "PMShowModel.h"
 
 @implementation PMShowModel
+
+//-(instancetype)init{
+//    if(self = [super init]) {
+//    }
+//    
+//    return self;
+//}
+
 -(instancetype)initWithTitle:(NSString *)title summary:(NSString *)summary lastWatchedEpisodeNumber:(NSString *)lastWatchedEpisodeNumber lastWatchedEpisodeSeason:(NSString *)lastWatchedEpisodeSeason scheduleAirTime:(NSString *)scheduleAirTime andScheduleAirDays:(NSString *)scheduleAirDays{
     if(self = [super init]) {
         self.title = title;

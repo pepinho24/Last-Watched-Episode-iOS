@@ -1,14 +1,15 @@
 //
-//  RemoteShowDetailsViewController.h
+//  LocalShowDetailsViewController.h
 //  LastWatchedEpisode
 //
-//  Created by VM on 2/6/16.
+//  Created by VM on 2/7/16.
 //  Copyright © 2016 PeterMilchev. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "PMShowModel.h"
 
-@interface RemoteShowDetailsViewController : UIViewController
+@interface LocalShowDetailsViewController : UIViewController
 
 @property NSString *showTitle;
 
