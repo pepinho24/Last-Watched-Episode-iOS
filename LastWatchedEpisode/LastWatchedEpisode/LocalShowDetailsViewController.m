@@ -35,7 +35,7 @@
     {
         UITextField *season = alertController.textFields.firstObject;
         UITextField *episode = alertController.textFields.lastObject;
-        UIAlertAction *okAction = alertController.actions.lastObject;
+        UIAlertAction *okAction = alertController.actions.firstObject;
         okAction.enabled = season.text.length > 0 && episode.text.length > 0;
     }
 }
@@ -57,7 +57,7 @@
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField)
      {
          //textField.placeholder = NSLocalizedString(@"EpisodePlaceholder", @"Episode");
-          textField.text = self.showModel.lastWatchedEpisodeNumber;
+         textField.text = self.showModel.lastWatchedEpisodeNumber;
          [textField addTarget:self
                        action:@selector(alertTextFieldDidChange:)
              forControlEvents:UIControlEventEditingChanged];
@@ -74,6 +74,36 @@
                                    self.showModel.lastWatchedEpisodeSeason = season;
                                    self.showModel.lastWatchedEpisodeNumber = episode;
                                    
+                                   self.labelLastWatchedEpisode.text = [NSString stringWithFormat:@"You last watched s%@e%@",
+                                                                        self.showModel.lastWatchedEpisodeSeason,
+                                                                        self.showModel.lastWatchedEpisodeNumber];
+                                   
+                                   [self.view makeToast:[NSString stringWithFormat:@"You watched s%@e%@",
+                                                         self.showModel.lastWatchedEpisodeSeason,
+                                                         self.showModel.lastWatchedEpisodeNumber]];
+                                   AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+                                   NSManagedObjectContext *managedContext =appDelegate.managedObjectContext;
+                                   
+                                   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName: @"ShowModel"];
+                                   
+                                   // TODO: cannot find show if it contains spaces in the title ....
+                                
+                                   NSError *err;
+                                   NSArray *results = [managedContext executeFetchRequest:fetchRequest error:&err];
+                                   
+                                   for(int i = 0; i < results.count; i ++) {
+                                       NSManagedObject *showEntity = results[i];
+                                       NSString *titleEntity =[showEntity valueForKey:@"title"];
+                                       
+                                       if ([titleEntity isEqualToString: self.showModel.title]) {
+                                           [results[i] setValue:episode forKey:@"lastWatchedEpisodeNumber"];                                           
+                                           [results[i] setValue:season forKey:@"lastWatchedEpisodeSeason"];
+                                           break;
+                                       }
+                                      
+                                   }
+                                   
+                                   [managedContext save:&err];
                                }];
     UIAlertAction *cancelAction = [UIAlertAction
                                    actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
@@ -82,18 +112,18 @@
                                    {
                                        NSLog(@"Cancel action");
                                    }];
-   
+    
     okAction.enabled = NO;
     
     [alertController addAction:okAction];
     [alertController addAction:cancelAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
-
+    
 }
 
 -(void)getShowFromLocalDatabase{
-   
+    
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
     NSManagedObjectContext *managedContext =appDelegate.managedObjectContext;
@@ -111,7 +141,7 @@
                                        scheduleAirTime:[showEntity valueForKey:@"scheduleAirTime"]
                                     andScheduleAirDays:[showEntity valueForKey:@"scheduleAirDays"] ];
         
-        if (self.showTitle == show.title) {
+        if ([self.showTitle isEqualToString: show.title]) {
             self.showModel = show;
             return;
         }
@@ -135,10 +165,10 @@
     
     self.titleLabel.text = self.showTitle;
     self.labelLastWatchedEpisode.text = [NSString stringWithFormat:@"You last watched s%@e%@",
-                                             self.showModel.lastWatchedEpisodeSeason,
-                                             self.showModel.lastWatchedEpisodeNumber];
+                                         self.showModel.lastWatchedEpisodeSeason,
+                                         self.showModel.lastWatchedEpisodeNumber];
     
-    self.data = [[PMHttpData alloc] init];   
+    self.data = [[PMHttpData alloc] init];
     [self getShowFromUrl];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];

@@ -28,14 +28,7 @@
 @implementation PopularShowsViewController
 
 - (void)rightToLeftSwipeDidFire {
-//    UITabBar *tabBar = self.tabBarController.tabBar;
-//    NSInteger index = [tabBar.items indexOfObject:tabBar.selectedItem];
-//    if (index < tabBar.items.count - 1) {
-//        self.tabBarController.selectedIndex = index + 1;
-//    } else {
-//        return;
-//    }
-    
+
     int controllerIndex = 1;
     
     UITabBarController *tabBarController = self.tabBarController;
@@ -57,6 +50,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
     
     UISwipeGestureRecognizer *rightToLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightToLeftSwipeDidFire)];
     rightToLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;

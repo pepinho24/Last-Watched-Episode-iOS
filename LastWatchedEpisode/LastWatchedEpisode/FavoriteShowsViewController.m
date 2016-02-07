@@ -26,7 +26,9 @@
 @implementation FavoriteShowsViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
     UIBarButtonItem *addBarButton =    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                      target:self
                                                                                      action:@selector(showAdd)];

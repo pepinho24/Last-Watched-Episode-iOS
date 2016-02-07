@@ -17,7 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view makeToast:@"This is a piece of toast."];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr3.jpg"]];
+        // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
