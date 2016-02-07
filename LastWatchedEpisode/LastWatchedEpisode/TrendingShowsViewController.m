@@ -1,13 +1,12 @@
 //
-//  PopularShowsViewController.m
+//  TrendingShowsViewController.m
 //  LastWatchedEpisode
 //
-//  Created by VM on 2/6/16.
+//  Created by VM on 2/7/16.
 //  Copyright © 2016 PeterMilchev. All rights reserved.
 //
 
-#import "PopularShowsViewController.h"
-
+#import "TrendingShowsViewController.h"
 #import "AppDelegate.h"
 
 #import "PMHttpData.h"
@@ -16,16 +15,17 @@
 #import "CheckInternet.h"
 #import <Toast/UIView+Toast.h>
 
-@interface PopularShowsViewController ()
+@interface TrendingShowsViewController ()
 
-@property NSMutableArray *popularShows;
+@property NSMutableArray *trendingShows;
+
 @property (strong, nonatomic) NSString *url;
 
 @property (strong, nonatomic) PMHttpData *data;
 
 @end
 
-@implementation PopularShowsViewController
+@implementation TrendingShowsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,59 +40,49 @@
         [self.view makeToast:@"Check your internet connection and try again."];
     }
     
-    // https://api-v2launch.trakt.tv/shows/popular
-    // trakt-api-key: 16d47c0248ab45d23f38d864f0a4d999a557b80058a76fe78e5b16e0a1f0e23e
-    // apiaryApiName: lastwatchedepisode
-    
-    //self.labelTitle.text = @"Most Popular Shows";
     [self.view makeToastActivity:CSToastPositionCenter];
-   
-    NSString *urlPopular = @"https://api-v2launch.trakt.tv/shows/popular";
+    
+    NSString *urlTrending = @"https://api-v2launch.trakt.tv/shows/trending";
+    
     self.data = [[PMHttpData alloc] init];
     
-    self.mostPopularShowsTableView.delegate = self;
-    self.mostPopularShowsTableView.dataSource = self;
+    self.trendingShowsTableView.delegate = self;
+    self.trendingShowsTableView.dataSource = self;
     
-    [self getTopShows:urlPopular];
+    [self getTopShows:urlTrending];
+
 }
 
--(void)getTopShows: (NSString *)urlPopular{
+-(void)getTopShows: (NSString *)urlTrending{
     NSMutableDictionary *headers = [NSMutableDictionary dictionary];
     [headers setObject:@"16d47c0248ab45d23f38d864f0a4d999a557b80058a76fe78e5b16e0a1f0e23e"
                 forKey:@"trakt-api-key"];
     [headers setObject:@"2"
                 forKey:@"trakt-api-version"];
     
-    [self.data getFrom: urlPopular headers:headers withCompletionHandler: ^(NSDictionary * result, NSError * err) {
+    // TODO: fix repeating
+    [self.data getFrom: urlTrending headers:headers withCompletionHandler: ^(NSDictionary * result, NSError * err) {
         NSMutableArray *shows = [NSMutableArray array];
         
         for(id key in result){
-            [shows addObject:key];
+            [shows addObject:[key objectForKey:@"show"]];
         }
         
-        self.popularShows = [NSMutableArray array];
-        [self.popularShows addObjectsFromArray:shows];
+        self.trendingShows = [NSMutableArray array];
+        [self.trendingShows addObjectsFromArray:shows];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.view hideToastActivity];
-            [self.mostPopularShowsTableView reloadData];
+            [self.trendingShowsTableView reloadData];
         });
     }];
-
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-#pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.popularShows.count;
+    return self.trendingShows.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -104,7 +94,7 @@
                                       reuseIdentifier:@"Cell"];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat: @"%@", [self.popularShows[indexPath.row] objectForKey:@"title"]];
+    cell.textLabel.text = [NSString stringWithFormat: @"%@", [self.trendingShows[indexPath.row] objectForKey:@"title"]];
     
     return cell;
 }
@@ -115,20 +105,26 @@
     RemoteShowDetailsViewController *showDetailsVC = [self.storyboard
                                                       instantiateViewControllerWithIdentifier: @"RemoteShowDetailsScene"];
     
-    showDetailsVC.showTitle = [self.popularShows[indexPath.row] objectForKey:@"title"];
+    showDetailsVC.showTitle = [self.trendingShows[indexPath.row] objectForKey:@"title"];
     
     [self.navigationController pushViewController:showDetailsVC
                                          animated:YES];
     [self.view hideToastActivity];
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 /*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

@@ -26,6 +26,7 @@
 		A6A6AEED1C64C1D90020DB3F /* LocalData.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A6AEEC1C64C1D90020DB3F /* LocalData.m */; };
 		A6D64B191C65739000919A89 /* PMHttpData.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D64B181C65739000919A89 /* PMHttpData.m */; };
 		A6D64B221C65768700919A89 /* PopularShowsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D64B211C65768700919A89 /* PopularShowsViewController.m */; };
+		A6F953261C66DB2700810690 /* TrendingShowsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F953251C66DB2700810690 /* TrendingShowsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,8 @@
 		A6D64B1A1C6573BF00919A89 /* PMHttpDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMHttpDataModel.h; sourceTree = "<group>"; };
 		A6D64B201C65768700919A89 /* PopularShowsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularShowsViewController.h; sourceTree = "<group>"; };
 		A6D64B211C65768700919A89 /* PopularShowsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularShowsViewController.m; sourceTree = "<group>"; };
+		A6F953241C66DB2700810690 /* TrendingShowsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendingShowsViewController.h; sourceTree = "<group>"; };
+		A6F953251C66DB2700810690 /* TrendingShowsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendingShowsViewController.m; sourceTree = "<group>"; };
 		AE761C722F52B627E9D1BA8B /* Pods-LastWatchedEpisode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LastWatchedEpisode.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LastWatchedEpisode/Pods-LastWatchedEpisode.debug.xcconfig"; sourceTree = "<group>"; };
 		E99DD424645340C3339EEF9C /* libPods-LastWatchedEpisode.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LastWatchedEpisode.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -169,6 +172,8 @@
 				A60094B51C6606D90016CCC8 /* BrowseShowsViewController.m */,
 				A628668D1C6634C00009CA57 /* RemoteShowDetailsViewController.h */,
 				A628668E1C6634C00009CA57 /* RemoteShowDetailsViewController.m */,
+				A6F953241C66DB2700810690 /* TrendingShowsViewController.h */,
+				A6F953251C66DB2700810690 /* TrendingShowsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				A6A6AEED1C64C1D90020DB3F /* LocalData.m in Sources */,
 				A6511E6C1C5F91BB0011BD40 /* HomePageViewController.m in Sources */,
 				A6A6AEE61C641C7B0020DB3F /* AddMovieViewController.m in Sources */,
+				A6F953261C66DB2700810690 /* TrendingShowsViewController.m in Sources */,
 				A60094B61C6606D90016CCC8 /* BrowseShowsViewController.m in Sources */,
 				A6D64B191C65739000919A89 /* PMHttpData.m in Sources */,
 				A62866951C669A670009CA57 /* Reachability.m in Sources */,
