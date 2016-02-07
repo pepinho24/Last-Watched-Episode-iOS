@@ -27,32 +27,36 @@
 
 @implementation PopularShowsViewController
 
-- (void)leftToRightSwipeDidFire {
-    UITabBar *tabBar = self.tabBarController.tabBar;
-    NSInteger index = [tabBar.items indexOfObject:tabBar.selectedItem];
-    if (index > 0) {
-        self.tabBarController.selectedIndex = index - 1;
-    } else {
-        return;
-    }
+- (void)rightToLeftSwipeDidFire {
+//    UITabBar *tabBar = self.tabBarController.tabBar;
+//    NSInteger index = [tabBar.items indexOfObject:tabBar.selectedItem];
+//    if (index < tabBar.items.count - 1) {
+//        self.tabBarController.selectedIndex = index + 1;
+//    } else {
+//        return;
+//    }
+    
+    int controllerIndex = 1;
+    
+    UITabBarController *tabBarController = self.tabBarController;
+    UIView * fromView = tabBarController.selectedViewController.view;
+    UIView * toView = [[tabBarController.viewControllers objectAtIndex:controllerIndex] view];
+    
+    // Transition using a page curl.
+    [UIView transitionFromView:fromView
+                        toView:toView
+                      duration:0.5
+                       options:(controllerIndex > tabBarController.selectedIndex ? UIViewAnimationOptionTransitionCurlUp : UIViewAnimationOptionTransitionCurlDown)
+                    completion:^(BOOL finished) {
+                        if (finished) {
+                            tabBarController.selectedIndex = controllerIndex;
+                        }
+                    }];
 }
 
-- (void)rightToLeftSwipeDidFire {
-    UITabBar *tabBar = self.tabBarController.tabBar;
-    NSInteger index = [tabBar.items indexOfObject:tabBar.selectedItem];
-    if (index < tabBar.items.count - 1) {
-        self.tabBarController.selectedIndex = index + 1;
-    } else {
-        return;
-    }
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UISwipeGestureRecognizer *leftToRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftToRightSwipeDidFire)];
-    leftToRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:leftToRightGesture];
     
     UISwipeGestureRecognizer *rightToLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightToLeftSwipeDidFire)];
     rightToLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;

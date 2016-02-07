@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LastWatchedEpisode/PopularShowsViewController.m"
-            timestampString = "476505716.303864"
+            timestampString = "476508725.791078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LastWatchedEpisode/PopularShowsViewController.m"
-            timestampString = "476505716.303864"
+            timestampString = "476508725.791078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LastWatchedEpisode/PopularShowsViewController.m"
-            timestampString = "476505716.303864"
+            timestampString = "476508725.791078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
