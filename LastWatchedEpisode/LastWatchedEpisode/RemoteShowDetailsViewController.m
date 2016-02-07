@@ -43,7 +43,24 @@
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateRecognized) {
-        [self.view makeToast:self.textViewSummary.text duration:20 position:CSToastPositionCenter];
+        UIAlertController * alert= [UIAlertController
+                                      alertControllerWithTitle:self.titleLabel.text
+                                      message:self.textViewSummary.text
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* okayButton = [UIAlertAction
+                                    actionWithTitle:@"Okay"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action)
+                                    {
+                                        //Handel your yes please button action here
+                                        
+                                        
+                                    }];
+        
+        [alert addAction:okayButton];
+        
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -80,6 +97,7 @@
         });
     }];
 }
+
 -(void)getEpisodeFromUrl:(NSString*) nextEpisodeUrl :(NSString*) previousEpisodeUrl{
     
     [self.data getFrom: nextEpisodeUrl headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
