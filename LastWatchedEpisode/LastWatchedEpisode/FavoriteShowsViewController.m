@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "LocalData.h"
 #import "PMShow.h"
+#import "PopularShowsTableViewCell.h"
 
 #import <Toast/UIView+Toast.h>
 //#import "PhoneCell.h"
@@ -34,6 +35,13 @@
                                                                                      action:@selector(showAdd)];
     
     self.navigationItem.rightBarButtonItem = addBarButton;
+    
+    
+    UINib* nib = [UINib nibWithNibName:@"PopularShowsTableViewCell"
+                                bundle:nil];
+    
+    [self.tableViewFavoriteShows registerNib:nib
+         forCellReuseIdentifier:@"PopularShowsTableViewCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,20 +99,31 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+        static NSString *cellIdentifier = @"PopularShowsTableViewCell";
     
-    //    UITableViewCell *cell = [[UITableViewCell alloc] init];
-    
-    static NSString *cellIdentifier = @"FavoritesShowTableViewCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    PopularShowsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+        cell = [[PopularShowsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:cellIdentifier];
+        
     }
     
-    cell.textLabel.text = [NSString stringWithFormat: @"%@", [self.shows[indexPath.row] title]];
+    UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
+    topLineView.backgroundColor = [UIColor grayColor];
+    [cell.contentView addSubview:topLineView];
+    
+    cell.titleLabel.text = [NSString stringWithFormat: @"%@", [self.shows[indexPath.row] title]];
+    cell.lastWatchedLabel.text =[NSString stringWithFormat:@"You last watched s%@e%@",
+                                 [self.shows[indexPath.row] lastWatchedEpisodeSeason],
+                                 [self.shows[indexPath.row] lastWatchedEpisodeNumber]];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
