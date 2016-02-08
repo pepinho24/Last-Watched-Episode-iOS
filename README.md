@@ -15,9 +15,9 @@ The applications notifies the user if some episodes are aired today and could wa
 - Top 10 trending and most watched series 
 - Notification for today's shows
 
-[Project's Github Repository]
-[Project at Telerik Academy]
-[Youtube video review]
+### [Project's Github Repository]
+### [Project at Telerik Academy]
+### [Youtube video review]
 
  [Project's Github Repository]: <https://github.com/pepinho24/Last-Watched-Episode-iOS>
  [Project at Telerik Academy]: <http://best.telerikacademy.com/projects/197/Last-Watched-Episode-tracker>
