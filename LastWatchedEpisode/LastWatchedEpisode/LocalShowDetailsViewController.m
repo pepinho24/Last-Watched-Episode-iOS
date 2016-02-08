@@ -157,8 +157,8 @@
     
     self.showModel = [PMShowModel showWithTitle:@"N/A"
                                         summary:@"N/A"
-                       lastWatchedEpisodeNumber:@"N/A"
-                       lastWatchedEpisodeSeason:@"N/A"
+                       lastWatchedEpisodeNumber:@"0"
+                       lastWatchedEpisodeSeason:@"0"
                                 scheduleAirTime:@"N/A"
                              andScheduleAirDays:@"N/A"];
     
@@ -183,6 +183,10 @@
     url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
+        if (err) {
+            [self.navigationController.view makeToast:err.description];
+            return;
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             self.showModel.title =[result objectForKey:@"name"];
@@ -206,6 +210,7 @@
             
             NSString *previousEpisodeURL =[[[result objectForKey:@"_links"] objectForKey:@"previousepisode"] objectForKey:@"href"];
             NSString *nextEpisodeURL = [[[result objectForKey:@"_links"] objectForKey:@"nextepisode"] objectForKey:@"href"];
+            
             [self getEpisodeFromUrl:nextEpisodeURL :previousEpisodeURL];
             [self.view hideToastActivity];
             
@@ -216,6 +221,10 @@
 -(void)getEpisodeFromUrl:(NSString*) nextEpisodeUrl :(NSString*) previousEpisodeUrl{
     
     [self.data getFrom: nextEpisodeUrl headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
+        if (err) {
+            [self.navigationController.view makeToast:err.description];
+            return;
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -231,6 +240,10 @@
     }];
     
     [self.data getFrom: previousEpisodeUrl headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
+        if (err) {
+            [self.navigationController.view makeToast:err.description];
+            return;
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             

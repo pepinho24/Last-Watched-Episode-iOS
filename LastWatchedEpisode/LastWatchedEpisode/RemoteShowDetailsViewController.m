@@ -93,7 +93,10 @@
     url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
-        
+        if (err) {
+            [self.navigationController.view makeToast:err.description];
+            return;
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             if (result) {
             self.showModel.title =[result objectForKey:@"name"];
@@ -131,7 +134,10 @@
 -(void)getEpisodeFromUrl:(NSString*) nextEpisodeUrl :(NSString*) previousEpisodeUrl{
     
     [self.data getFrom: nextEpisodeUrl headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
-        
+        if (err) {
+            [self.navigationController.view makeToast:err.description];
+            return;
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             
             NSString *episode = [NSString stringWithFormat:@"Next ep:S%@E%@ - %@",
@@ -146,7 +152,10 @@
     }];
     
     [self.data getFrom: previousEpisodeUrl headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
-        
+        if (err) {
+            [self.navigationController.view makeToast:err.description];
+            return;
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             
             NSString *episode = [NSString stringWithFormat:@"Last ep:S%@E%@ - %@",

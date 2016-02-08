@@ -60,7 +60,7 @@
     
     [delegate.data addShow:sh];
     
-    [self.view makeToast:@"Show added Successfully!"];
+    [self.navigationController.view makeToast:@"Show added Successfully!"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 /*

@@ -112,6 +112,10 @@
     [self.view makeToastActivity:CSToastPositionCenter];
     [self.data getFrom: urlPopular headers:headers withCompletionHandler: ^(NSDictionary * result, NSError * err) {
         NSMutableArray *shows = [NSMutableArray array];
+        if (err) {
+            [self.navigationController.view makeToast:err.description];
+            return;
+        }
         
         for(id key in result){
             [shows addObject:key];
@@ -172,7 +176,10 @@
     url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
-        
+        if (err) {
+            [self.navigationController.view makeToast:err.description];
+            return;
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             cell.posterImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"image"] objectForKey:@"medium"]]]];
             cell.posterImageView.contentMode = UIViewContentModeScaleAspectFit;

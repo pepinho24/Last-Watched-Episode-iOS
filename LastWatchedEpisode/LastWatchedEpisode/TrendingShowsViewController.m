@@ -118,6 +118,11 @@
     
     // TODO: fix repeatition
     [self.data getFrom: urlTrending headers:headers withCompletionHandler: ^(NSDictionary * result, NSError * err) {
+        if (err) {
+            [self.navigationController.view makeToast:err.description];
+            return;
+        }
+        
         NSMutableArray *shows = [NSMutableArray array];
         
         for(id key in result){
@@ -173,6 +178,10 @@
     url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
+        if (err) {
+            [self.navigationController.view makeToast:err.description];
+            return;
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             cell.posterImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"image"] objectForKey:@"medium"]]]];

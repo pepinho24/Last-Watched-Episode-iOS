@@ -128,6 +128,11 @@
     NSError *err;
     NSArray *results = [managedContext executeFetchRequest:fetchRequest error:&err];
     
+    if (err) {
+         [self.navigationController.view makeToast:err.description];
+        return;
+    }
+    
     for(int i = 0; i < results.count; i ++) {
         NSManagedObject *showEntity = results[i];
         NSString *titleEntity =[showEntity valueForKey:@"title"];
@@ -140,6 +145,11 @@
     }
     
     [managedContext save:&err];
+    
+    if (err) {
+        [self.navigationController.view makeToast:err.description];
+        return;
+    }
     
     [appDelegate.data deleteShow:self.shows[indexPath.row]];
     self.shows = [appDelegate.data shows];
