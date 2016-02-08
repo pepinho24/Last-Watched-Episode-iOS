@@ -84,30 +84,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fMF-Hd-RUo">
-                                <rect key="frame" x="20" y="173" width="560" height="378"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="These are the trending shows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBn-se-j97">
-                                <rect key="frame" x="20" y="64" width="560" height="101"/>
+                                <rect key="frame" x="20" y="64" width="560" height="64"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="101" id="lS3-9g-PVw"/>
+                                    <constraint firstAttribute="height" constant="64" id="FXl-yJ-2Q4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fMF-Hd-RUo">
+                                <rect key="frame" x="20" y="136" width="560" height="378"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tho-Tb-W2M">
+                                <rect key="frame" x="20" y="521" width="550" height="30"/>
+                                <state key="normal" title="Show more"/>
+                                <connections>
+                                    <action selector="onShowMoreBtnClick:" destination="Kxd-Ma-WAc" eventType="touchUpInside" id="mtI-4e-cwG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gBn-se-j97" firstAttribute="leading" secondItem="iUS-43-UwW" secondAttribute="leadingMargin" id="7jq-KM-bE6"/>
-                            <constraint firstAttribute="bottom" secondItem="fMF-Hd-RUo" secondAttribute="bottom" constant="49" id="BdV-Pc-ndi"/>
-                            <constraint firstItem="gBn-se-j97" firstAttribute="trailing" secondItem="fMF-Hd-RUo" secondAttribute="trailing" id="Hnz-KO-Jot"/>
-                            <constraint firstItem="fMF-Hd-RUo" firstAttribute="top" secondItem="gBn-se-j97" secondAttribute="bottom" constant="8" symbolic="YES" id="KGB-wt-wPk"/>
-                            <constraint firstItem="gBn-se-j97" firstAttribute="leading" secondItem="fMF-Hd-RUo" secondAttribute="leading" id="T9w-gs-Vuj"/>
-                            <constraint firstItem="gBn-se-j97" firstAttribute="top" secondItem="iUS-43-UwW" secondAttribute="top" constant="64" id="feA-Be-VLo"/>
-                            <constraint firstItem="gBn-se-j97" firstAttribute="trailing" secondItem="iUS-43-UwW" secondAttribute="trailingMargin" id="kGm-jd-TXo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Tho-Tb-W2M" secondAttribute="trailing" constant="10" id="1X8-BZ-ioR"/>
+                            <constraint firstItem="Tho-Tb-W2M" firstAttribute="bottom" secondItem="j3p-Hl-DDq" secondAttribute="top" id="1ca-NF-MQx"/>
+                            <constraint firstItem="gBn-se-j97" firstAttribute="top" secondItem="GG4-gq-1Ch" secondAttribute="bottom" id="3xQ-Pw-AMe"/>
+                            <constraint firstItem="Tho-Tb-W2M" firstAttribute="leading" secondItem="fMF-Hd-RUo" secondAttribute="leading" id="658-C6-D96"/>
+                            <constraint firstItem="Tho-Tb-W2M" firstAttribute="top" secondItem="fMF-Hd-RUo" secondAttribute="bottom" constant="7" id="H0q-Tt-sfy"/>
+                            <constraint firstItem="fMF-Hd-RUo" firstAttribute="leading" secondItem="iUS-43-UwW" secondAttribute="leadingMargin" id="Hgu-4U-05y"/>
+                            <constraint firstItem="fMF-Hd-RUo" firstAttribute="trailing" secondItem="gBn-se-j97" secondAttribute="trailing" id="SkX-C7-FOg"/>
+                            <constraint firstItem="gBn-se-j97" firstAttribute="trailing" secondItem="iUS-43-UwW" secondAttribute="trailingMargin" id="XGQ-iQ-ymO"/>
+                            <constraint firstItem="fMF-Hd-RUo" firstAttribute="top" secondItem="gBn-se-j97" secondAttribute="bottom" constant="8" symbolic="YES" id="e7R-IO-6k5"/>
+                            <constraint firstItem="gBn-se-j97" firstAttribute="leading" secondItem="fMF-Hd-RUo" secondAttribute="leading" id="xjc-La-lMm"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="Ug5-Bv-nng"/>

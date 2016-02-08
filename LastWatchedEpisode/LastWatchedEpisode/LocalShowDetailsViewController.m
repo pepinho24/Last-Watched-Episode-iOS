@@ -151,7 +151,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
     
     [self.view makeToastActivity:CSToastPositionCenter];
     

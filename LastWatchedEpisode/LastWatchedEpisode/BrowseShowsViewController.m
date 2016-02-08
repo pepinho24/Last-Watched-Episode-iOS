@@ -34,6 +34,20 @@
 
 @implementation BrowseShowsViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
+    self.pageCount = 1;
+    self.data = [[PMHttpData alloc] init];
+    
+    [self.textFieldSearchShow becomeFirstResponder];
+    
+    self.tableViewSearchResults.delegate = self;
+    self.tableViewSearchResults.dataSource = self;
+    self._shows = [NSMutableArray array];
+    
+}
+
 -(void)getShowsFromUrl{
     NSString *url = [NSString stringWithFormat:@"http://www.omdbapi.com/?s=%@&page=%i&type=series", self.showName,self.pageCount];
     url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
@@ -42,6 +56,8 @@
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
         if (err) {
             [self.view makeToast: [err localizedDescription]];
+            [self.view hideToastActivity];
+            return;
         }
         
         NSArray *showsDicts = [result objectForKey:@"Search"];
@@ -67,12 +83,13 @@
 
 }
 
--(void)onSearchBtnClick{
+-(IBAction)onSearchBtnClick:(id)sender{
     
     // add paging
     self.pageCount = 1;
     self._shows = [NSMutableArray array];
-    self.showName =self.textFieldSearchShow.text;
+    self.showName =[self.textFieldSearchShow.text stringByTrimmingCharactersInSet:
+                                                 [NSCharacterSet whitespaceCharacterSet]];
     [self getShowsFromUrl];
 }
 
@@ -82,23 +99,11 @@
     [self getShowsFromUrl];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.pageCount = 1;
-    self.data = [[PMHttpData alloc] init];
-    
-    [self.textFieldSearchShow becomeFirstResponder];
-    
-    self.tableViewSearchResults.delegate = self;
-    self.tableViewSearchResults.dataSource = self;
-    self._shows = [NSMutableArray array];
-    
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -108,7 +113,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    // make custom cell view with title and poster
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     if(cell == nil) {

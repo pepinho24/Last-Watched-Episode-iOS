@@ -43,6 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
     self.titleLabel.text = self.showTitle;
     // Do any additional setup after loading the view.
      [self.view makeToastActivity:CSToastPositionCenter];

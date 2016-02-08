@@ -22,12 +22,21 @@
 @property NSMutableArray *trendingShows;
 
 @property (strong, nonatomic) NSString *url;
-
+@property int pageCount;
 @property (strong, nonatomic) PMHttpData *data;
-
+- (IBAction)onShowMoreBtnClick:(id)sender;
+@property (strong, nonatomic) NSString *urlTrending;
 @end
 
 @implementation TrendingShowsViewController
+
+- (IBAction)onShowMoreBtnClick:(id)sender {
+    self.pageCount++;
+    // show notification if clicked before assigning value to show name
+    self.urlTrending = [NSString stringWithFormat:@"https://api-v2launch.trakt.tv/shows/trending?page=%i",self.pageCount];
+    
+    [self getTopShows:self.urlTrending];
+}
 
 - (void)leftToRightSwipeDidFire {
 //    UITabBar *tabBar = self.tabBarController.tabBar;
@@ -59,6 +68,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.pageCount=1;
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
     UINib* nib = [UINib nibWithNibName:@"TopShowsTableViewCell"
                                 bundle:nil];
@@ -84,19 +94,20 @@
     
     [self.view makeToastActivity:CSToastPositionCenter];
     
-    NSString *urlTrending = @"https://api-v2launch.trakt.tv/shows/trending";
-    
+    self.urlTrending = [NSString stringWithFormat:@"https://api-v2launch.trakt.tv/shows/trending?page=%i",self.pageCount];
+    self.trendingShows = [NSMutableArray array];
     self.data = [[PMHttpData alloc] init];
     
     self.trendingShowsTableView.delegate = self;
     self.trendingShowsTableView.dataSource = self;
     
-    [self getTopShows:urlTrending];
+    [self getTopShows:self.urlTrending];
 
 }
 
 -(void)getTopShows: (NSString *)urlTrending{
     NSMutableDictionary *headers = [NSMutableDictionary dictionary];
+    
     [headers setObject:@"16d47c0248ab45d23f38d864f0a4d999a557b80058a76fe78e5b16e0a1f0e23e"
                 forKey:@"trakt-api-key"];
     [headers setObject:@"2"
@@ -110,7 +121,7 @@
             [shows addObject:[key objectForKey:@"show"]];
         }
         
-        self.trendingShows = [NSMutableArray array];
+        
         [self.trendingShows addObjectsFromArray:shows];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -192,5 +203,6 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 @end

@@ -53,8 +53,8 @@
     
     //self.labelTitle.text = @"Most Popular Shows";
     
-    
-    NSString *urlPopular = @"https://api-v2launch.trakt.tv/shows/popular";
+    // TODO: Add pagination
+    NSString *urlPopular = @"https://api-v2launch.trakt.tv/shows/popular?page=1";
     // TODO: use the data from the AppDelegate
     self.data = [[PMHttpData alloc] init];
     
