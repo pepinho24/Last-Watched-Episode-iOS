@@ -9,7 +9,7 @@
 #import "PopularShowsViewController.h"
 
 #import "AppDelegate.h"
-
+#import "TopShowsTableViewCell.h"
 #import "PMHttpData.h"
 #import "RemoteShowDetailsViewController.h"
 #import "PMShow.h"
@@ -17,20 +17,37 @@
 #import <Toast/UIView+Toast.h>
 
 @interface PopularShowsViewController ()
-
+@property int pageCount;
 @property NSMutableArray *popularShows;
 @property (strong, nonatomic) NSString *url;
-
+@property (strong, nonatomic) NSString *urlPopular;
 @property (strong, nonatomic) PMHttpData *data;
-
+@property (strong, nonatomic) NSString *cellIdentifier;
+- (IBAction)onShowMoreBtnClick:(id)sender;
 @end
 
 @implementation PopularShowsViewController
 
+- (IBAction)onShowMoreBtnClick:(id)sender {
+    self.pageCount++;
+    
+    self.urlPopular = [NSString stringWithFormat:@"https://api-v2launch.trakt.tv/shows/popular?page=%i",
+                        self.pageCount];
+    
+    [self getTopShows:self.urlPopular];
+    [self.view makeToast:@"Loaded more shows" duration:1 position:CSToastPositionCenter];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
     
+    self.pageCount = 1;
+    self.cellIdentifier =@"TopShowsTableViewCell";
+    
+    UINib* nib = [UINib nibWithNibName: self.cellIdentifier bundle:nil];
+    
+    [self.mostPopularShowsTableView registerNib:nib
+                      forCellReuseIdentifier:self.cellIdentifier];
     UISwipeGestureRecognizer *rightToLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
                                                                                              action:@selector(rightToLeftSwipeDidFire)];
     rightToLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
@@ -54,14 +71,14 @@
     //self.labelTitle.text = @"Most Popular Shows";
     
     // TODO: Add pagination
-    NSString *urlPopular = @"https://api-v2launch.trakt.tv/shows/popular?page=1";
+    self.urlPopular = [NSString stringWithFormat:@"https://api-v2launch.trakt.tv/shows/popular?page=%i",self.pageCount];
     // TODO: use the data from the AppDelegate
     self.data = [[PMHttpData alloc] init];
-    
+    self.popularShows = [NSMutableArray array];
     self.mostPopularShowsTableView.delegate = self;
     self.mostPopularShowsTableView.dataSource = self;
     
-    [self getTopShows:urlPopular];
+    [self getTopShows:self.urlPopular];
 }
 
 - (void)rightToLeftSwipeDidFire {
@@ -100,7 +117,6 @@
             [shows addObject:key];
         }
         
-        self.popularShows = [NSMutableArray array];
         [self.popularShows addObjectsFromArray:shows];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -125,19 +141,45 @@
     return self.popularShows.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    TopShowsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
     
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:@"Cell"];
+        cell = [[TopShowsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                            reuseIdentifier:self.cellIdentifier];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat: @"%@", [self.popularShows[indexPath.row] objectForKey:@"title"]];
+    UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
+    topLineView.backgroundColor = [UIColor grayColor];
+    [cell.contentView addSubview:topLineView];
+
     
+    NSString *showTitle =[self.popularShows[indexPath.row] objectForKey:@"title"];
+    [self setPosterFromShowTitle:showTitle :cell];
+    
+    cell.titleLabel.text = showTitle;
     return cell;
 }
+
+-(void)setPosterFromShowTitle: (NSString*) showTitle :(TopShowsTableViewCell *)cell{
+    NSString *url = [NSString stringWithFormat:@"http://api.tvmaze.com/singlesearch/shows?q=%@", showTitle];
+    url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    
+    [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.posterImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"image"] objectForKey:@"medium"]]]];
+            cell.posterImageView.contentMode = UIViewContentModeScaleAspectFit;
+        });
+    }];
+}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath  {
     
