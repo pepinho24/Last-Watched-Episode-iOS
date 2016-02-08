@@ -451,10 +451,10 @@
             </objects>
             <point key="canvasLocation" x="1960" y="-212"/>
         </scene>
-        <!--Remote Show details-->
+        <!--Show details-->
         <scene sceneID="BlG-y5-J96">
             <objects>
-                <viewController storyboardIdentifier="RemoteShowDetailsScene" title="Remote Show details" id="aac-me-rkd" customClass="RemoteShowDetailsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RemoteShowDetailsScene" title="Show details" id="aac-me-rkd" customClass="RemoteShowDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Co6-ic-9q5"/>
                         <viewControllerLayoutGuide type="bottom" id="PL5-A8-MGF"/>

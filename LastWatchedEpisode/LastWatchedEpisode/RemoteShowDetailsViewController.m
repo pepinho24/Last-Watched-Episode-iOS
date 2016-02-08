@@ -34,6 +34,9 @@
 - (IBAction)addToFavoritesBtnClick:(id)sender {
     AddMovieViewController *showDetailsVC = [self.storyboard
                                                       instantiateViewControllerWithIdentifier: @"addMovieScene"];
+    if ([self.showModel.title isEqualToString:@"N/A"]) {
+        self.showModel.title = self.showTitle;        
+    }
     
     showDetailsVC.showModel = self.showModel;
     
@@ -47,7 +50,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
     self.titleLabel.text = self.showTitle;
     // Do any additional setup after loading the view.
-     [self.view makeToastActivity:CSToastPositionCenter];
+     //[self.view makeToastActivity:CSToastPositionCenter];
     self.data = [[PMHttpData alloc] init];
     self.showModel = [PMShowModel showWithTitle:@"N/A"
                                         summary:@"N/A"
@@ -91,10 +94,11 @@
 -(void)getShowFromUrl{
     NSString *url = [NSString stringWithFormat:@"http://api.tvmaze.com/singlesearch/shows?q=%@", self.showTitle];
     url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    
+    [self.view makeToastActivity:CSToastPositionCenter];
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
         if (err) {
             [self.navigationController.view makeToast:err.description];
+            [self.view hideToastActivity];
             return;
         }
         dispatch_async(dispatch_get_main_queue(), ^{

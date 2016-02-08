@@ -36,7 +36,17 @@
         UITextField *season = alertController.textFields.firstObject;
         UITextField *episode = alertController.textFields.lastObject;
         UIAlertAction *okAction = alertController.actions.firstObject;
-        okAction.enabled = season.text.length > 0 && episode.text.length > 0;
+        
+        // check if string contains only digits
+        BOOL valid;
+        NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
+        NSCharacterSet *inStringSetSeason = [NSCharacterSet characterSetWithCharactersInString:season.text];
+        NSCharacterSet *inStringSetEpisode = [NSCharacterSet characterSetWithCharactersInString:episode.text];
+        
+        valid = [alphaNums isSupersetOfSet:inStringSetSeason] && [alphaNums isSupersetOfSet:inStringSetEpisode];
+        
+        okAction.enabled = season.text.length > 0 && episode.text.length > 0 && valid;
+        
     }
 }
 - (IBAction)watchEpisodeBtnClick:(id)sender {
@@ -87,7 +97,7 @@
                                    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName: @"ShowModel"];
                                    
                                    // TODO: cannot find show if it contains spaces in the title ....
-                                
+                                   
                                    NSError *err;
                                    NSArray *results = [managedContext executeFetchRequest:fetchRequest error:&err];
                                    
@@ -96,11 +106,11 @@
                                        NSString *titleEntity =[showEntity valueForKey:@"title"];
                                        
                                        if ([titleEntity isEqualToString: self.showModel.title]) {
-                                           [results[i] setValue:episode forKey:@"lastWatchedEpisodeNumber"];                                           
+                                           [results[i] setValue:episode forKey:@"lastWatchedEpisodeNumber"];
                                            [results[i] setValue:season forKey:@"lastWatchedEpisodeSeason"];
                                            break;
                                        }
-                                      
+                                       
                                    }
                                    
                                    [managedContext save:&err];

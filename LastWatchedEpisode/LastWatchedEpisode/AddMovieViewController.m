@@ -56,6 +56,26 @@
         return;
     }
     
+    if ([scheduleAirTime length] == 0) {
+        scheduleAirTime = @"N/A";
+    }
+    
+    if ([scheduleAirDays length] == 0) {
+        scheduleAirDays = @"N/A";
+    }
+    // check if string contains only digits
+    BOOL valid;
+    NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
+    NSCharacterSet *inStringSetSeason = [NSCharacterSet characterSetWithCharactersInString:lastWatchedEpisodeSeason];
+    NSCharacterSet *inStringSetEpisode = [NSCharacterSet characterSetWithCharactersInString:lastWatchedEpisodeNumber];
+    
+    valid = [alphaNums isSupersetOfSet:inStringSetSeason] && [alphaNums isSupersetOfSet:inStringSetEpisode];
+    
+    if (!valid) {
+        [self.view makeToast:@"Season and episode must contain only digits."];
+        return;
+    }
+    
     PMShowModel *sh= [PMShowModel showWithTitle:title summary:summary lastWatchedEpisodeNumber:lastWatchedEpisodeNumber lastWatchedEpisodeSeason:lastWatchedEpisodeSeason scheduleAirTime:scheduleAirTime andScheduleAirDays:scheduleAirDays];
     
     [delegate.data addShow:sh];
