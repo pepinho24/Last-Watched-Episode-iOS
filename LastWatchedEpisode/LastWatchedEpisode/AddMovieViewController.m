@@ -69,7 +69,10 @@
     NSCharacterSet *inStringSetSeason = [NSCharacterSet characterSetWithCharactersInString:lastWatchedEpisodeSeason];
     NSCharacterSet *inStringSetEpisode = [NSCharacterSet characterSetWithCharactersInString:lastWatchedEpisodeNumber];
     
-    valid = [alphaNums isSupersetOfSet:inStringSetSeason] && [alphaNums isSupersetOfSet:inStringSetEpisode];
+    valid = [lastWatchedEpisodeSeason length] > 0
+    && [lastWatchedEpisodeNumber length] > 0
+    &&[alphaNums isSupersetOfSet:inStringSetSeason]
+    && [alphaNums isSupersetOfSet:inStringSetEpisode];
     
     if (!valid) {
         [self.view makeToast:@"Season and episode must contain only digits."];
