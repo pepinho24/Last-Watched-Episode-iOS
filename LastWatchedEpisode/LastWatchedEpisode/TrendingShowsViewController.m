@@ -59,7 +59,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
     UINib* nib = [UINib nibWithNibName:@"TopShowsTableViewCell"
                                 bundle:nil];
     
@@ -71,7 +71,7 @@
     UISwipeGestureRecognizer *leftToRightGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftToRightSwipeDidFire)];
     leftToRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:leftToRightGesture];
-    
+       
     if ([CheckInternet isInternetConnectionAvailable])
     {
         [self.view makeToast:@"Has internet."];

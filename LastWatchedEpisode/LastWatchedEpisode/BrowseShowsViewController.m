@@ -38,7 +38,7 @@
     NSString *url = [NSString stringWithFormat:@"http://www.omdbapi.com/?s=%@&page=%i&type=series", self.showName,self.pageCount];
     url = [url stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     [self.view makeToastActivity:CSToastPositionCenter];
-
+    
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
         if (err) {
             [self.view makeToast: [err localizedDescription]];
@@ -67,7 +67,7 @@
 
 }
 
--(void)onSearchBtnClick:(id)sender{
+-(void)onSearchBtnClick{
     
     // add paging
     self.pageCount = 1;

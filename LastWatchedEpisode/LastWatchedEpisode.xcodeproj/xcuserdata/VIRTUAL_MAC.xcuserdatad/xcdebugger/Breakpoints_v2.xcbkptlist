@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LastWatchedEpisode/FavoriteShowsViewController.m"
-            timestampString = "476572841.894472"
+            timestampString = "476583787.583886"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -255,7 +255,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "72"
             endingLineNumber = "72"
-            landmarkName = "-onSearchBtnClick:"
+            landmarkName = "-onSearchBtnClick"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

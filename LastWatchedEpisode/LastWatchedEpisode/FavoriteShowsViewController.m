@@ -64,26 +64,26 @@
 //                        andDescription: @"Batman's city"];
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    
+    [appDelegate.data loadShows];
     //self.shows = [NSArray arrayWithObjects: sh, nil];
-    NSManagedObjectContext *managedContext =appDelegate.managedObjectContext;
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"ShowModel"];
-    
-    NSArray *showEntities = [managedContext executeFetchRequest:request error:nil];
-    
-    for(int i = 0; i < showEntities.count; i ++) {
-        NSManagedObject *showEntity = showEntities[i];
-        
-        PMShowModel *show = [PMShowModel showWithTitle:[showEntity valueForKey:@"title"]
-                                                summary:[showEntity valueForKey:@"summary"]
-                               lastWatchedEpisodeNumber:[showEntity valueForKey:@"lastWatchedEpisodeNumber"]
-                               lastWatchedEpisodeSeason:[showEntity valueForKey:@"lastWatchedEpisodeSeason"]
-                                        scheduleAirTime:[showEntity valueForKey:@"scheduleAirTime"]
-                                     andScheduleAirDays:[showEntity valueForKey:@"scheduleAirDays"] ];
-                             
-        
-        [[appDelegate.data shows] addObject: show];
-    }
+//    NSManagedObjectContext *managedContext =appDelegate.managedObjectContext;
+//    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"ShowModel"];
+//    
+//    NSArray *showEntities = [managedContext executeFetchRequest:request error:nil];
+//    
+//    for(int i = 0; i < showEntities.count; i ++) {
+//        NSManagedObject *showEntity = showEntities[i];
+//        
+//        PMShowModel *show = [PMShowModel showWithTitle:[showEntity valueForKey:@"title"]
+//                                                summary:[showEntity valueForKey:@"summary"]
+//                               lastWatchedEpisodeNumber:[showEntity valueForKey:@"lastWatchedEpisodeNumber"]
+//                               lastWatchedEpisodeSeason:[showEntity valueForKey:@"lastWatchedEpisodeSeason"]
+//                                        scheduleAirTime:[showEntity valueForKey:@"scheduleAirTime"]
+//                                     andScheduleAirDays:[showEntity valueForKey:@"scheduleAirDays"] ];
+//                             
+//        
+//        [[appDelegate.data shows] addObject: show];
+//    }
     
     self.tableViewFavoriteShows.delegate = self;
     self.tableViewFavoriteShows.dataSource = self;
@@ -96,7 +96,73 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.shows.count;
 }
+-(void)handleLongPress:(UILongPressGestureRecognizer *)longPress
+{
+    
+    UIGestureRecognizerState state = longPress.state;
+    
+    if (state == UIGestureRecognizerStateBegan){
+    CGPoint location = [longPress locationInView:self.tableViewFavoriteShows];
+    NSIndexPath *indexPath = [self.tableViewFavoriteShows indexPathForRowAtPoint:location];
+    NSString *showTitle=[self.shows[indexPath.row] title];
+    
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Delete show"
+                                              message:[NSString stringWithFormat: @"Are you sure you want to delete '%@'",showTitle]
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *deleteAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Delete Show", @"DELETE action")
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       [self.view makeToast:@"Deleted Successfully!"];
 
+                                       AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+                                       NSManagedObjectContext *managedContext =appDelegate.managedObjectContext;
+                                       
+                                       NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName: @"ShowModel"];
+                                       
+                                       NSError *err;
+                                       NSArray *results = [managedContext executeFetchRequest:fetchRequest error:&err];
+                                       
+                                       for(int i = 0; i < results.count; i ++) {
+                                           NSManagedObject *showEntity = results[i];
+                                           NSString *titleEntity =[showEntity valueForKey:@"title"];
+                                           
+                                           if ([titleEntity isEqualToString: showTitle]) {
+                                               [managedContext deleteObject:results[i]];
+                                               
+                                               break;
+                                           }
+                                           
+                                       }
+                                       
+                                       [managedContext save:&err];
+                                      
+                                       [appDelegate.data deleteShow:self.shows[indexPath.row]];
+                                       self.shows = [appDelegate.data shows];
+                                       [self.tableViewFavoriteShows reloadData];
+//                                       
+                                   }];
+        UIAlertAction *cancelAction = [UIAlertAction
+                                       actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action")
+                                       style:UIAlertActionStyleCancel
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"Cancel action");
+                                       }];
+        
+        
+        [alertController addAction:deleteAction];
+        [alertController addAction:cancelAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+        
+        
+    }
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
         static NSString *cellIdentifier = @"FavoriteShowsTableViewCell";
@@ -108,6 +174,11 @@
                                       reuseIdentifier:cellIdentifier];
         
     }
+    
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 1.0; //seconds
+    [cell addGestureRecognizer:lpgr];
     
     UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
     topLineView.backgroundColor = [UIColor grayColor];

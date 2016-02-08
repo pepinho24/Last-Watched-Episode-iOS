@@ -52,7 +52,7 @@
     
     PMShowModel *sh= [PMShowModel showWithTitle:title summary:summary lastWatchedEpisodeNumber:lastWatchedEpisodeNumber lastWatchedEpisodeSeason:lastWatchedEpisodeSeason scheduleAirTime:scheduleAirTime andScheduleAirDays:scheduleAirDays];
     [delegate.data addShow:sh];
-    
+    [self.view makeToast:@"Shpw added Successfully!"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 /*

@@ -51,7 +51,7 @@
         
         [showsArray addObject: show];
     }
-    
+    self._shows = showsArray;
     return showsArray;
 }
 -(NSMutableArray*) shows {
