@@ -22,6 +22,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initTextFields];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
+}
+
+-(void) initTextFields{
     self.textFieldTitle.text = self.showModel.title;
     self.textFieldSummary.text = self.showModel.summary;
     self.textFieldLastWatchedEpisodeNumber.text = self.showModel.lastWatchedEpisodeNumber;
@@ -34,6 +39,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 -(void)AddShowBtnClick:(id)sender{
     
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
@@ -44,15 +50,17 @@
     NSString* lastWatchedEpisodeSeason =self.textFieldLastWatchedEpisodeSeason.text;
     NSString* scheduleAirTime =self.textFieldScheduleAirTime.text;
     NSString* scheduleAirDays =self.textFieldScheduleAirDays.text;
-    
-    if ([title length] == 0) {
-        [self.view makeToast:@"Title is required."];
+   
+    if ([title length] == 0 || [summary length] == 0) {
+        [self.view makeToast:@"Title and summary are required."];
         return;
     }
     
     PMShowModel *sh= [PMShowModel showWithTitle:title summary:summary lastWatchedEpisodeNumber:lastWatchedEpisodeNumber lastWatchedEpisodeSeason:lastWatchedEpisodeSeason scheduleAirTime:scheduleAirTime andScheduleAirDays:scheduleAirDays];
+    
     [delegate.data addShow:sh];
-    [self.view makeToast:@"Shpw added Successfully!"];
+    
+    [self.view makeToast:@"Show added Successfully!"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 /*
