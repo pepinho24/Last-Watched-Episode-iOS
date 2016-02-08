@@ -168,9 +168,9 @@
     [cell.contentView addSubview:topLineView];
     
     cell.titleLabel.text = [NSString stringWithFormat: @"%@", [self.shows[indexPath.row] title]];
-    cell.lastWatchedLabel.text =[NSString stringWithFormat:@"You last watched s%@e%@",
-                                 [self.shows[indexPath.row] lastWatchedEpisodeSeason],
-                                 [self.shows[indexPath.row] lastWatchedEpisodeNumber]];
+    cell.airDaysAndTimeLabel.text =[NSString stringWithFormat:@"Airs %@ at %@",
+                                 [self.shows[indexPath.row] scheduleAirDays],
+                                 [self.shows[indexPath.row] scheduleAirTime]];
     
     return cell;
 }

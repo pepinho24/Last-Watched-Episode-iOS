@@ -27,8 +27,45 @@
 
 @implementation PopularShowsViewController
 
-- (void)rightToLeftSwipeDidFire {
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
+    
+    UISwipeGestureRecognizer *rightToLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                             action:@selector(rightToLeftSwipeDidFire)];
+    rightToLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:rightToLeftGesture];
+    
+    if ([CheckInternet isInternetConnectionAvailable])
+    {
+        [self.view makeToast:@"Has internet."];
+    }
+    else
+    {
+        // no internet
+        // TODO: do not get shows, show default view
+        [self.view makeToast:@"Check your internet connection and try again."];
+    }
+    
+    // https://api-v2launch.trakt.tv/shows/popular
+    // trakt-api-key: 16d47c0248ab45d23f38d864f0a4d999a557b80058a76fe78e5b16e0a1f0e23e
+    // apiaryApiName: lastwatchedepisode
+    
+    //self.labelTitle.text = @"Most Popular Shows";
+    
+    
+    NSString *urlPopular = @"https://api-v2launch.trakt.tv/shows/popular";
+    // TODO: use the data from the AppDelegate
+    self.data = [[PMHttpData alloc] init];
+    
+    self.mostPopularShowsTableView.delegate = self;
+    self.mostPopularShowsTableView.dataSource = self;
+    
+    [self getTopShows:urlPopular];
+}
 
+- (void)rightToLeftSwipeDidFire {
+    
     int controllerIndex = 1;
     
     UITabBarController *tabBarController = self.tabBarController;
@@ -47,50 +84,15 @@
                     }];
 }
 
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
-    
-    UISwipeGestureRecognizer *rightToLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightToLeftSwipeDidFire)];
-    rightToLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.view addGestureRecognizer:rightToLeftGesture];
-    
-    
-    
-    if ([CheckInternet isInternetConnectionAvailable])
-    {
-        [self.view makeToast:@"Has internet."];
-    }
-    else
-    {
-        // no internet
-        [self.view makeToast:@"Check your internet connection and try again."];
-    }
-    
-    // https://api-v2launch.trakt.tv/shows/popular
-    // trakt-api-key: 16d47c0248ab45d23f38d864f0a4d999a557b80058a76fe78e5b16e0a1f0e23e
-    // apiaryApiName: lastwatchedepisode
-    
-    //self.labelTitle.text = @"Most Popular Shows";
-    [self.view makeToastActivity:CSToastPositionCenter];
-   
-    NSString *urlPopular = @"https://api-v2launch.trakt.tv/shows/popular";
-    self.data = [[PMHttpData alloc] init];
-    
-    self.mostPopularShowsTableView.delegate = self;
-    self.mostPopularShowsTableView.dataSource = self;
-    
-    [self getTopShows:urlPopular];
-}
-
 -(void)getTopShows: (NSString *)urlPopular{
     NSMutableDictionary *headers = [NSMutableDictionary dictionary];
+    
     [headers setObject:@"16d47c0248ab45d23f38d864f0a4d999a557b80058a76fe78e5b16e0a1f0e23e"
                 forKey:@"trakt-api-key"];
     [headers setObject:@"2"
                 forKey:@"trakt-api-version"];
     
+    [self.view makeToastActivity:CSToastPositionCenter];
     [self.data getFrom: urlPopular headers:headers withCompletionHandler: ^(NSDictionary * result, NSError * err) {
         NSMutableArray *shows = [NSMutableArray array];
         
@@ -106,7 +108,7 @@
             [self.mostPopularShowsTableView reloadData];
         });
     }];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {

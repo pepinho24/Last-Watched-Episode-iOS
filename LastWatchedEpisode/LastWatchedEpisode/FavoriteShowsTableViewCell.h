@@ -10,6 +10,6 @@
 
 @interface FavoriteShowsTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *lastWatchedLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *airDaysAndTimeLabel;
 @end

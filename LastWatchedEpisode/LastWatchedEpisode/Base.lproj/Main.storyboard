@@ -131,27 +131,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WTH-Qe-hQM">
+                                <rect key="frame" x="20" y="151" width="555" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="These are the most popular shows" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHf-T7-4e0">
-                                <rect key="frame" x="20" y="64" width="555" height="132"/>
+                                <rect key="frame" x="20" y="64" width="555" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="5nx-Jz-Hs2"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WTH-Qe-hQM">
-                                <rect key="frame" x="20" y="197" width="555" height="354"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lHf-T7-4e0" firstAttribute="top" secondItem="LIc-hL-IgE" secondAttribute="bottom" id="9BY-Hn-prf"/>
-                            <constraint firstItem="WTH-Qe-hQM" firstAttribute="trailing" secondItem="lHf-T7-4e0" secondAttribute="trailing" id="AK4-Ab-xDc"/>
-                            <constraint firstItem="WTH-Qe-hQM" firstAttribute="top" secondItem="lHf-T7-4e0" secondAttribute="bottom" constant="1" id="Ee3-cW-5pw"/>
-                            <constraint firstItem="WTH-Qe-hQM" firstAttribute="leading" secondItem="M3D-t8-73v" secondAttribute="leadingMargin" id="Sd9-rK-bRA"/>
-                            <constraint firstItem="sH3-wQ-s2J" firstAttribute="top" secondItem="lHf-T7-4e0" secondAttribute="bottom" constant="355" id="XyE-bX-F4b"/>
-                            <constraint firstItem="WTH-Qe-hQM" firstAttribute="bottom" secondItem="sH3-wQ-s2J" secondAttribute="top" id="bFf-b5-O4h"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lHf-T7-4e0" secondAttribute="trailing" constant="5" id="tkd-eM-CGc"/>
-                            <constraint firstItem="lHf-T7-4e0" firstAttribute="leading" secondItem="M3D-t8-73v" secondAttribute="leadingMargin" id="vzU-74-Rt3"/>
+                            <constraint firstItem="WTH-Qe-hQM" firstAttribute="leading" secondItem="M3D-t8-73v" secondAttribute="leadingMargin" id="1T0-qa-JWq"/>
+                            <constraint firstItem="WTH-Qe-hQM" firstAttribute="top" secondItem="lHf-T7-4e0" secondAttribute="bottom" constant="8" symbolic="YES" id="Atq-WP-yVs"/>
+                            <constraint firstItem="lHf-T7-4e0" firstAttribute="top" secondItem="LIc-hL-IgE" secondAttribute="bottom" id="EI1-cd-WP8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lHf-T7-4e0" secondAttribute="trailing" constant="5" id="b2m-Dp-2UK"/>
+                            <constraint firstItem="lHf-T7-4e0" firstAttribute="leading" secondItem="WTH-Qe-hQM" secondAttribute="leading" id="ixR-cw-2Nb"/>
+                            <constraint firstItem="WTH-Qe-hQM" firstAttribute="trailing" secondItem="lHf-T7-4e0" secondAttribute="trailing" id="q3z-OF-axH"/>
+                            <constraint firstItem="WTH-Qe-hQM" firstAttribute="bottom" secondItem="sH3-wQ-s2J" secondAttribute="top" id="yjf-rh-1Dr"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="topRated" id="e38-cc-D66"/>
@@ -714,10 +716,10 @@
             </objects>
             <point key="canvasLocation" x="540" y="479"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Top shows-->
         <scene sceneID="MHw-Lr-VOo">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="k8v-Ky-5UA" sceneMemberID="viewController">
+                <tabBarController title="Top shows" automaticallyAdjustsScrollViewInsets="NO" id="k8v-Ky-5UA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="kPc-Jq-VIp">
                         <autoresizingMask key="autoresizingMask"/>
