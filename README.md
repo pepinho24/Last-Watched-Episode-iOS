@@ -18,3 +18,5 @@ The applications notifies the user if some episodes are aired today and could wa
 [Project's Github Repository]
 
  [Project's Github Repository]: <https://github.com/pepinho24/Last-Watched-Episode-iOS>
+ [Project at Telerik Academy]: <http://best.telerikacademy.com/projects/197/Last-Watched-Episode-tracker>
+ [Youtube video review]: <https://www.youtube.com/watch?v=SXW-qH_I0p0>
