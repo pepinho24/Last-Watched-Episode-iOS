@@ -43,6 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgr1.jpg"]];
     self.titleLabel.text = self.showTitle;
     // Do any additional setup after loading the view.
@@ -50,8 +51,8 @@
     self.data = [[PMHttpData alloc] init];
     self.showModel = [PMShowModel showWithTitle:@"N/A"
                                         summary:@"N/A"
-                       lastWatchedEpisodeNumber:@"N/A"
-                       lastWatchedEpisodeSeason:@"N/A"
+                       lastWatchedEpisodeNumber:@"0"
+                       lastWatchedEpisodeSeason:@"0"
                                 scheduleAirTime:@"N/A"
                              andScheduleAirDays:@"N/A"];
     [self getShowFromUrl];
@@ -59,8 +60,6 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     tapGesture.numberOfTapsRequired = 2;
     [self.textViewSummary addGestureRecognizer:tapGesture];
-    //[tapGesture release];
-    
 }
 
 - (void)handleTapGesture:(UITapGestureRecognizer *)sender {
@@ -75,8 +74,6 @@
                                     style:UIAlertActionStyleDefault
                                     handler:^(UIAlertAction * action)
                                     {
-                                        //Handel your yes please button action here
-                                        
                                         
                                     }];
         
@@ -98,13 +95,13 @@
     [self.data getFrom: url headers:nil withCompletionHandler: ^(NSDictionary * result, NSError * err) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (result) {
             self.showModel.title =[result objectForKey:@"name"];
             self.showModel.summary =[result objectForKey:@"summary"];
             
             self.titleLabel.text = self.showModel.title;
             self.textViewSummary.text = self.showModel.summary;
             
-            // NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:ImageURL]]
             self.imageViewPoster.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"image"] objectForKey:@"medium"]]]];
              self.imageViewPoster.contentMode = UIViewContentModeCenter;
             
@@ -120,6 +117,11 @@
             NSString *previousEpisodeURL =[[[result objectForKey:@"_links"] objectForKey:@"previousepisode"] objectForKey:@"href"];
             NSString *nextEpisodeURL = [[[result objectForKey:@"_links"] objectForKey:@"nextepisode"] objectForKey:@"href"];
             [self getEpisodeFromUrl:nextEpisodeURL :previousEpisodeURL];
+            }
+            else{
+                // TODO: Display blank page
+                [self.view makeToast:@"No details for the show :(" duration:3 position:CSToastPositionCenter];
+            }
              [self.view hideToastActivity];
             
         });
@@ -136,8 +138,8 @@
                                  [result objectForKey:@"season"],
                                  [result objectForKey:@"number"],
                                  [result objectForKey:@"name"]];
-            if ([episode  isEqual: @"(null)"]) {
-                episode = @"N/A";
+            if (!result) {
+                episode = @"Next ep: N/A";
             }
             self.labelNextEpisode.text = episode;
         });
@@ -151,8 +153,8 @@
                                  [result objectForKey:@"season"],
                                  [result objectForKey:@"number"],
                                  [result objectForKey:@"name"]];
-            if ([episode  isEqual: @"(null)"]) {
-                episode = @"N/A";
+            if (!result)  {
+                episode = @"Last ep: N/A";
             }
             self.labelPreviousEpisode.text = episode;
         });
