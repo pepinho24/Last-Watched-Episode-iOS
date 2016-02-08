@@ -143,6 +143,7 @@
     
     [appDelegate.data deleteShow:self.shows[indexPath.row]];
     self.shows = [appDelegate.data shows];
+    // TODO: can be sorted or/and grouped by AirDay
     [self.tableViewFavoriteShows reloadData];
 }
 
